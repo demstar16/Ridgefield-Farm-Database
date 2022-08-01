@@ -1,0 +1,35 @@
+I believe a Relational Database would be best as most people in the group have some experience with relational databases (MySQL, Oracle, etc.) It also seems to be capable of what I'd think we'd need and from reading the brief project description. However, this will be confirmed when we meet with the client and make a plan. I have gathered some good information (straight from a website, link is at the bottom) that gives 2 potential databases we could use. Open to hear other thoughts or suggestions... :) 
+---------------------------------------------------------------------------------------------------
+MySQL:
+
+Pros
+- It's available for free.
+- It offers a lot of functionality even for a free database engine.
+- There are a variety of user interfaces that can be implemented.
+- It can be made to work with other databases, including DB2 and Oracle.
+
+Cons
+- You may spend a lot of time and effort to get MySQL to do things that other systems do automatically, like create incremental backups.
+- There is no built-in support for XML or OLAP.
+- Support is available for the free version, but you'll need to pay for it.
+
+MariaSQL:
+
+Pros 
+- The system is fast and stable.
+- Progress bars let you know how a query is progressing.
+- Extensible architecture and plugins allow you to customise the tool to match your needs.
+- Encryption is available at network, server and application levels.
+
+Cons
+- The engine is still fairly new, so there is no guarantee further updates and versions will be forthcoming.
+- As with many other free database engines, you have to pay for support
+
+https://www.keycdn.com/blog/popular-databases
+---------------------------------------------------------------------------------------------------
+The reasons I liked these 2, were that they seem to be relatively easy to use code wise, members of the team have experience with them, well documented (MySQL, not MariaSQL), cheap or free and both offer stability and a wide range of functionality.
+
+
+
+
+
