@@ -93,4 +93,21 @@ A central repository is a collection of stored data from existing databases merg
 
 In a new style of intensive farming developed in North America, a paddock is a small (perhaps 1 acre) temporary subdivision of a pasture made with electric fencing, which is intensely grazed for a day and then left to rest for perhaps 80 days or more.
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+I think we should be used the centralized database or the Open-source database, maybe the both, because there are many students and farmers who need to use the database, and they will update the database and use the database all the time, that means, If there is a server for data storage and sharing, it will be very convenient for students and farmers to extract and upload data at any time. But there is a problem, that is, how to avoid uploading the wrong data to cause everyone's use errors and problems.
+
+https://support.microsoft.com/en-us/office/database-design-basics-eb2159cf-1e30-401a-8084-bd4f9c9ca1f5
+
+Database design basics
+Some database terms to know
+What is good database design?
+The design process
+Determining the purpose of your database
+Finding and organizing the required information
+Dividing the information into tables
+Turning information items into columns
+Specifying primary keys
+Creating the table relationships
+Refining the design
+Applying the normalization rules
 
