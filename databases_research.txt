@@ -83,6 +83,14 @@ Will user data continue to be stored and accessible after research completion? H
 What sort of systems will the database be accessed from? Is there a reliable internet connection at Farm Ridgefield?
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Terms
 
+1.The Institute of Agriculture would like to develop a //database/central repository// to house data collected and allow it to be accessible by others.
+
+A central repository is a collection of stored data from existing databases merged into one so that it may be shared, analyzed or updated throughout an organization. It is essentially created by integrating the data from all available sources. Having all information in a central location allows for the data to be easily organized, analyzed and secured.
+
+2. Data may include soils data, cropping history, yield, weather and initial thoughts are that it could be accessible on a //paddock-by-paddock// basis.
+
+In a new style of intensive farming developed in North America, a paddock is a small (perhaps 1 acre) temporary subdivision of a pasture made with electric fencing, which is intensely grazed for a day and then left to rest for perhaps 80 days or more.
 
 
