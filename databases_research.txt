@@ -117,5 +117,8 @@ Questions answered
 Only admin
 2. What system will the database perform on?
 Mostly windows but can be apple or windows.
+3. Is there a limited access for users?
+Users who have access to the database have aceess to whatever they want, meaning that we dont need to divid user's access. Only admin and users
+
 
 
