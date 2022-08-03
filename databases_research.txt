@@ -110,4 +110,12 @@ Specifying primary keys
 Creating the table relationships
 Refining the design
 Applying the normalization rules
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Questions answered
+1. Is user allowed to do deletion or only admin can remove files that were uploaded?
+Only admin
+2. What system will the database perform on?
+Mostly windows but can be apple or windows.
+
 
