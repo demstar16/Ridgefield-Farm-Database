@@ -1,0 +1,51 @@
+Change Log
++--------+---------------------------+----------------------------------+
+|8/08/22 | Dempsey Thompson	     | * Created some stories that came |
+|        |                           |  to mind when thinking of user   |
+|	 |			     |	experience... more to come.     |
+|        |			     | * Created a potential format for |
+|	 |			     | inserting the data into database |
++--------+---------------------------+----------------------------------+
+
+Map:
+I had no idea of the paddock I worked on's name, however I distinctly 
+remembered its location, right in the corner. Knowing this I could easily
+view the map and click on the paddock I worked on to see all the data for
+that paddock and easily add my collected data to the pile.
+
+Log In:
+As soon as I entered the website I was prompted with a log in or sign up 
+option. I thought I had an account so I clicked log in, I soon realised I
+didn't have an account. Luckily, there was a button at the bottom of the 
+page that would take me to the sign up page. There I inputted my details 
+and requested sign up. I got a prompt saying that my request has been
+sent to admin and that I will receive an email when approved (or
+disapproved.)
+
+Forgot password:
+I always remember my password, however I've managed to do the impossible 
+and forget the password to see all the valuable farm data. Thankfully 
+there was a link called "Forget Password?" That sent an email confirmation 
+to give me temporary access to change my password.
+
+Navigation:
+I entered this website in search for old data from the ages, back in 1968.
+Thankfully all the data was ordered in descending order by year, so finding 
+year was just a matter of scrolling or CTRL+F finding the year.
+
+Wanted_Data:
+I was in search for yield data of a specific paddock. So I searched for most 
+recent data for the desired paddock and checked the title of the attached 
+file to see if yield was there... no luck. I'll have to gather my own data 
+and make a new entry.
+
+***
+Search Functionality:
+I wasn't entirely sure what I was looking for. To my surprise there was a 
+list at the top of the screen showing all the types of data that can
+be found in the database. Turns out I was after soil data for Paddock 6 and
+8. So I simply searched for data with the following filters, paddock numbers 
+6 & 8, year 2018-present. Then I searched teh files for latest soil data
+
+POTENTIAL FORMAT:
+Paddock_Num, Paddock_Type, Year, FILE
