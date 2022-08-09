@@ -1,0 +1,41 @@
+Meeting Notes
+
+Commit research and other work to Github 
+
+Assign individual tasks of sprint 1 deliverables 
+•	Sarthak, Patton - scope of work
+•	James - Project Acceptance tests
+•	Yu - Risk Register
+•	Qichong - A skill and resources audit
+•	Dempsey - A set of stories 
+
+Backend framework discussion option
+•	Alternative solution 
+•	Django is multithreaded which could be overkill for the project
+•	Flush, Relational database are mentioned
+•	Django could more suitably option for now
+•	All options above are backup options if the access of SharePoint could not get approval
+
+SharePoint
+•	Already contact to the IT department SharePoint, waiting access approval
+•	SPFx framework will be the framework for backend development, need more research and learning. 
+
+scope of the project
+•	Prioritize the functionality of interactable Map, take search as secondly task as it is only required if it can deliver.
+•	More detail needs to clarify during the client meeting this week.
+
+Front end 
+•	Skills will be used in the font are Jinja, html, CSS, JavaScript
+•	JavaScript can link to backend with React framework
+
+Testing 
+•	Unit Test 
+•	Use Selenium for automating user simulation
+
+Roles
+•	Sarthak, Yu: Front end
+•	Patton and Qichong: Back end
+•	Dempsey: SQL database 
+•	James: Testing
+•	One manager per Sprint (Minimum 3) to ensure the project progress consistently, too many managers could lead to difficulties of management. 
+
