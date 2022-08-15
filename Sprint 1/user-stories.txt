@@ -1,0 +1,44 @@
+Priorty Scale (LOW-MED-HIGH)  	* Based on where the effort needs to go for each 
+				  feature.
+				* These are also based on priorities for Sprint 2
+
+Map: (MED)
+I had no idea of the paddock I worked on's name, however I distinctly 
+remembered its location, right in the corner. Knowing this I could easily
+view the map and click on the desired area to access its respective data.
+
+Log In: (MED)
+As soon as I entered the website I was prompted with a log in or sign up 
+option. I thought I had an account so I clicked log in, I soon realised I
+didn't have an account. Luckily, there was a button at the bottom of the 
+page that would take me to the sign up page. There I inputted my details 
+and requested sign up. I got a prompt saying that my request has been
+sent to admin and that I will receive an email when approved (or
+disapproved.)
+
+Forgot password: (LOW)
+I always remember my password, however I've managed to do the impossible 
+and forget my own password. Thankfully there was a link called "Forget 
+Password?" That sent an email confirmation to give me temporary access 
+to change my password.
+
+Filter: (HIGH)
+I had lots of data to go looking for, for some I knew what paddock I worked on, 
+however some I didn't. I filtered all the data by paddock name for those that I 
+could remember. As for the others, I just filtered the data from 2015-present and 
+Manually searched for the rest.
+
+Home Page: (MED)
+Once my account was approved and I entered the site I could see a large intreractive 
+map. With tabs at the top that would take me to the Repository Page or the Contact Page.
+
+Repository Access: (HIGH)
+Once I was on the Home Page I could easily either click on a paddock on the map to see
+the data in the repository for that paddock. I could also click the repository tab at
+the top of the page to get to the entire repository.
+
+Admin Controls: (MED)
+As an admin I have the power to restore incorrect file changes or deletions, monitor changes
+and even change parts of the system.
+
+
