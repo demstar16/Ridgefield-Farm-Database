@@ -37,7 +37,7 @@ Once I was on the Home Page I could easily either click on a paddock on the map 
 the data in the repository for that paddock. I could also click the repository tab at
 the top of the page to get to the entire repository.
 
-Admin Controls: (MED)
+Admin Controls: (HIGH)
 As an admin I have the power to restore incorrect file changes or deletions, monitor changes
 and even change parts of the system.
 
