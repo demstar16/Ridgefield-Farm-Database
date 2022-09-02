@@ -1,0 +1,30 @@
+How to run:
+
+1. make sure python is installed
+
+2. navigate to the project folder
+
+3. run commands in terminal:
+
+    python3 -m venv venv
+
+    source venv/bin/activate
+
+    pip install -r requirements.txt
+
+4. cd into /repository
+
+5. to make your own admin account run:
+
+    python manage.py createsuperuser
+
+5. run command in terminal:
+
+    python manage.py runserver
+
+6. go to the output url
+
+admin site can be accessed by output-address/admin
+
+
+
