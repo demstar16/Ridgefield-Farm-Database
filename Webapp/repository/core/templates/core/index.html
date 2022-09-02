@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div>
+  <h4>Welcome back {{ user.first_name }}!</h4>
+</div>
+
+<div>
+  <div class="paddock-selector">
+    <ul>
+      {% for paddock in paddocks %}
+      <li><a href="{% url 'paddock' paddock.id %} ">{{paddock.name}}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="recent-files">
+    <h4>Recent Files</h4>
+      <ul>
+        {% for file in files %}
+        <li><a href="{% url 'file' file.id %}">{{file.name}}</a></li>
+        {% endfor %}
+      </ul>
+  </div>
+</div>
+
+{% endblock content %}

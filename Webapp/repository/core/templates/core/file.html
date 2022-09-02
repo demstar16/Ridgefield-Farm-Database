@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div>
+    <div>
+        <h1>{{ file.name }}</h1>
+    </div>
+    <div>
+        <ul>
+            <h4>Tags</h4>
+            {% for tag in tags %}
+            <li>{{tag.name}}</li>
+            {% endfor %}
+        </ul>
+        <ul>
+            <h4>File Information</h4>
+            <li>Created -- {{ file.created }}</li>
+            <li>Updated -- {{ file.updated }}</li>
+            <li>Description -- {{ file.description }}</li>
+        </ul>
+    </div>
+    <div>
+        <a href="{{ file.filedata.url }}" download><h4>Download</h4></a>
+        <h4>Update</h4>
+        <h4>Delete</h4>
+    </div>
+</div>
+
+{% endblock content %}

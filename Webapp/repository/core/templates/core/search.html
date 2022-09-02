@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div>
+  <div>
+    <h4>Results for: {{ query }}</h4>
+      <ul>
+        {% for file in files %}
+        <li><a href="{% url 'file' file.id %}">{{file.name}}</a></li>
+        {% endfor %}
+      </ul>
+  </div>
+</div>
+
+{% endblock content %}
