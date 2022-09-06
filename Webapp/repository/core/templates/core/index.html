@@ -2,21 +2,30 @@
 
 {% block content %}
 
+<style>
+    .text_1 {margin-left: 45%;}
+    .text_2 {margin-left: 46.5%;}
+    .list1 {list-style-type: none; margin-left: 45%;}
+    .list2 {list-style-type: none; margin-left: 42%;}
+    li {margin: 10px;}
+</style>
+
 <div>
-  <h4>Welcome back {{ user.first_name }}!</h4>
+  <h4 class="text_1">Welcome back {{ user.first_name }}!</h4>
 </div>
 
 <div>
   <div class="paddock-selector">
-    <ul>
+    <ul class="list1">
       {% for paddock in paddocks %}
       <li><a href="{% url 'paddock' paddock.id %} ">{{paddock.name}}</a></li>
       {% endfor %}
     </ul>
   </div>
+  <br>
   <div class="recent-files">
-    <h4>Recent Files</h4>
-      <ul>
+    <h4 class="text_2">Recent Files</h4>
+      <ul class="list2">
         {% for file in files %}
         <li><a href="{% url 'file' file.id %}">{{file.name}}</a></li>
         {% endfor %}

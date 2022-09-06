@@ -2,27 +2,32 @@
 
 {% block content %}
 
+<style>
+    .bold {font-weight: bold;}
+</style>
+
 <div>
     <div>
-        <h1>{{ user.username }}</h1>
+        <h1>User: {{ user.username }}</h1>
     </div>
     <div>
-        <h4>Name</h4>
-        <p>{{ user.first_name }} {{ user.last_name }}</p>
-        <h4>Role</h4>
-        <p>{{ user.role.name }}</p>
-        <h4>Bio</h4>
-        <p>{{ user.bio }}</p>
-        <h4>Last Login</h4>
-        <p>Last Login: {{ user.last_login }}</p>
-        </ul>
+        <!-- <h4>Name: </h4> -->
+        <p><span class="bold">Name:</span> {{ user.first_name }} {{ user.last_name }}</p>
+        <!-- <h4>Role:</h4> -->
+        <p><span class="bold">Role:</span> {{ user.role.name }}</p>
+        <!-- <h4>Bio:</h4> -->
+        <p><span class="bold">Bio:</span> {{ user.bio }}</p>
+        <!-- <h4>Last Login:</h4> -->
+        <p><span class="bold">Last Login:</span> {{ user.last_login }}</p>
+        <p><span class="bold">Contact Info:</span> {{ user.email }}</p>
+        <!-- </ul>
     </div>
     <div>
-        <h4>Contact Info</h4>
+        <h4>Contact Info:</h4>
         <ul>
-            <li>{{ user.email }}</li>
+            <p>{{ user.email }}</p>
         </ul>
-    </div>
+    </div> -->
 </div>
 
 {% endblock content %}

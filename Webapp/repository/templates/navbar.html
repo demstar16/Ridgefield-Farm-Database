@@ -1,10 +1,19 @@
 {% if user.is_authenticated %}
-<a href="/"><h1>Home</h1></a>
+<style>
+    body {font-family: Georgia, serif;}
+    a:link { text-decoration: none; }
+    p {margin-left: 1.5%;}
+    input {margin-left: 1.5%; background-color: rgb(230, 229, 229); border-radius: 5%;}
+    h1 {margin-left: 1.5%}
+</style>
+
+<a href="/"><h1>HOME</h1></a>
 <form method="GET" action="{% url 'search' %}">
-    <input type="text" name="q" placeholder="Search"/>
+    <input class="right" type="text" name="q" placeholder="Search"/>
 </form>
 <a href="{% url 'profile' user.id %}"><p>Profile</p></a>
 <a href="{% url 'upload' %}"><p>Upload</p></a>
 <a href="{% url 'logout' %}"><p>Log Out</p></a>
+</div>
 {% endif %}
 <hr>

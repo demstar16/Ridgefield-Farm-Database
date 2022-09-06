@@ -1,10 +1,15 @@
 {% extends 'main.html' %}
 
 {% block content %}
+
+  <style>
+    .upload_button {margin-left: 1.5%;}
+  </style>
+
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Upload</button>
+    <button class='upload_button' type="submit">Upload</button>
   </form>
 
   <p><a href="{% url 'index' %}">Return to index</a></p>

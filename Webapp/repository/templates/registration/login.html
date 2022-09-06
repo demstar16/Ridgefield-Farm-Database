@@ -1,17 +1,26 @@
+<style>
+  .center {margin-left: 49%;}
+  .middle_1 {margin-left: 42%;}
+  .middle_2 {margin-left: 15%;}
+  .middle_3 {margin-left: 47%;}
+  .middle_4 {margin-left: 48.5%;}
+  body {font-family: Georgia, serif;}
+  .login_button {background-color: lightgrey; border-radius: 15%; border-color: black;}
+</style>
 
 <div>
 
-  <h2>Log In</h2>
+  <h2 class="center">LOGIN</h2>
 
-<form method="post">
+<form method="post" class="middle_1">
   {% csrf_token %}
   {{ form.as_p }}
-  <button type="submit">Log In</button>
+  <button type="submit" class="middle_2" class="login_button">Log In</button>
 </form>
 
 <hr>
 
-<p>Don't have an account?</p>
-<a href="{% url 'register' %}">Request Access</a>
+<p class="middle_3">Don't have an account?</p>
+<a class ='middle_4' href="{% url 'register' %}">Request Access</a>
 
 </div>
