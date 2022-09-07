@@ -13,7 +13,7 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     role = models.ForeignKey(Role, on_delete=models.SET_NULL, null=True)
     bio = models.TextField(null=True, blank=True)
-
+    phone = models.CharField(null=True, max_length=100)
     #USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
