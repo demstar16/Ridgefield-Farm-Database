@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div>
+    <div>
+        <h1>{{ user.username }}</h1>
+    </div>
+    <div>
+        <h4>Name</h4>
+        <p>{{ user.first_name }} {{ user.last_name }}</p>
+        <h4>Role</h4>
+        <p>{{ user.role.name }}</p>
+        <h4>Bio</h4>
+        <p>{{ user.bio }}</p>
+        <h4>Last Login</h4>
+        <p>Last Login: {{ user.last_login }}</p>
+        </ul>
+    </div>
+</div>
+
+{% endblock content %}

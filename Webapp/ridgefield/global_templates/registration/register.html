@@ -1,0 +1,21 @@
+{% extends "default.html" %}
+
+{% block main %}
+<div>
+<h3>Request Access</h3>
+
+  <div>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Submit Request</button>
+    </form>
+  </div>
+<hr>
+
+  <div>
+    <p>Already have an account?</p>
+    <a href="{% url 'login' %}">Request Access</a>
+  </div>
+</div>
+{% endblock %}
