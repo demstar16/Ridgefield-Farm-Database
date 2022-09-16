@@ -1,0 +1,49 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<div class="container card" style="margin-top: 50px;">
+    <h2 style="text-align: center;">Browse Files</h2>
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">         
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Filename</th>
+          <th>Paddock</th>
+          <th>Year</th>
+          <th>Tags</th>
+          <th>Size</th>
+          <th>Uploaded By</th>
+          <th>Last Edited</th>
+        </tr>
+      </thead>
+      <tbody id="myTable">
+        {% for file in files %}
+        <a href="{% url 'file' file.id %}">
+            <tr>
+                <td>{{file.name}}</td>
+                <td>paddock1</td>
+                <td>2022</td>
+                <td>soil</td>
+                <td>1.3mb</td>
+                <td>{{file.uploader.username}}</td>
+                <td>{{file.updated}}</td>
+            </tr>
+        </a>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+</script>
+
+{% endblock %}

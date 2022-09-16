@@ -1,27 +1,40 @@
 {% extends "main.html" %}
+{% load static %}
+
+<form method="GET" action="{% url 'search' %}">
+  <input type="text" name="q" placeholder="Search"/>
+</form>
 
 {% block content %}
-
-<div>
-  <h4>Welcome back {{ user.first_name }}!</h4>
-</div>
-
-<div>
-  <div class="paddock-selector">
-    <ul>
-      {% for paddock in paddocks %}
-      <li><a href="{% url 'paddock' paddock.id %} ">{{paddock.name}}</a></li>
-      {% endfor %}
-    </ul>
+<div class="container">
+  <div id="index-search" class="shadowed">
+  <form method="GET" action="{% url 'search' %}">
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" name="q" placeholder="Search">
+    <div class="input-group-append">
+      <button class="btn btn-primary" type="submit">Go</button>
+    </div>
   </div>
-  <div class="recent-files">
-    <h4>Recent Files</h4>
-      <ul>
-        {% for file in files %}
-        <li><a href="{% url 'file' file.id %}">{{file.name}}</a></li>
+  </form>
+  </div>
+</div>
+<div class="container">
+  <div class="card shadowed">
+    <div id="map-container">
+      <h5>Select by Paddock</h5>
+      <h5>or 
+        <a href="{% url 'browse' %}">
+          <button class="btn btn-primary">Browse All</button>
+        </a>
+      </h5>
+      <div id="map-display">
+        {% for paddock in paddocks %}
+        <li><a href="{% url 'browse' paddock.id %}">{{paddock.name}}</a></li>
         {% endfor %}
-      </ul>
+      </div>
+    </div>
   </div>
 </div>
+
 
 {% endblock %}

@@ -19,13 +19,6 @@ def viewProfile(request, pk):
     return render(request, 'core/profile.html', context)
 
 @login_required(login_url='accounts/login')
-def viewPaddock(request, pk):
-    paddock = Paddock.objects.get(id=pk)
-    files = File.objects.filter(paddocks=pk)
-    context = {'paddock': paddock, 'files': files}
-    return render(request, 'core/paddock.html', context)
-
-@login_required(login_url='accounts/login')
 def search(request):
     q = request.GET.get('q')
     files = File.objects.filter(
@@ -34,3 +27,16 @@ def search(request):
     )
     context = {'query': q, 'files': files}
     return render(request, 'core/search.html', context)
+
+@login_required(login_url='accounts/login')
+def browse(request):
+    files = File.objects.all()
+    context = {'files': files}
+    return render(request, 'core/browse.html', context)
+
+@login_required(login_url='accounts/login')
+def byPaddock(request, pk):
+    paddock = Paddock.objects.get(id=pk)
+    files = File.objects.filter(paddocks=pk)
+    context = {'files': files}
+    return render(request, 'core/browse.html', context)
