@@ -1,11 +1,23 @@
-{% extends 'main.html' %}
+{% extends "main.html" %}
 
 {% block content %}
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Upload</button>
-  </form>
-
-  <p><a href="{% url 'index' %}">Return to index</a></p>
+<div class="container">
+  <div class="card form-container shadowed">
+    <div class="form-content">
+      <h3>Upload a File</h3>
+      <div>
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit">Upload</button>
+        </form>
+      </div>
+      <hr>
+      <div>
+        <p><a href="{% url 'index' %}">Return to index</a></p>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
+

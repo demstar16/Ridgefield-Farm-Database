@@ -1,22 +1,38 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="navbar-collapse collapse w-50 order-1 order-md-0">
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'browse' %}">Browse</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'upload' %}">Upload</a>
+          </li>
 
-    <a class="navbar-brand" href="/">Home</a>
-    
+      </ul>
+  </div>
+  <div class="mx-auto order-0">
     <form method="GET" action="{% url 'search' %}">
-      <input type="text" name="q" placeholder="Search"/>
-    </form>
-
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'profile' user.id %}">Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'upload' %}">Upload</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-      </li>
-    </ul>
-    
+      <div class="input-group">
+        <input type="text" class="form-control bg-dark text-white" name="q" placeholder="Search">
+        <div class="input-group-append">
+          <button class="btn btn-secondary" type="submit">Go</button>
+        </div>
+      </div>
+      </form>
+  </div>
+  <div class="navbar-collapse collapse w-50 order-3">
+      <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'profile' user.id %}">Profile</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
+      </ul>
+  </div>
 </nav>
+
 
