@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'core.apps.CoreConfig',
     'files.apps.FilesConfig',
+
+    'dbbackup',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -51,8 +53,12 @@ LOGOUT_REDIRECT_URL = "/"
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# For Database Backups
 STATICFILES_DIRS: [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR/'backup'}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
