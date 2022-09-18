@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'files.apps.FilesConfig',
 
-    'dbbackup',
+    # 'dbbackup',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'

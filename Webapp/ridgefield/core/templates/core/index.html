@@ -27,11 +27,17 @@
           <button class="btn btn-primary">Browse All</button>
         </a>
       </h5>
-      <div id="map-display">
-        {% for paddock in paddocks %}
-        <a style="font-family: Arial, Helvetica, sans-serif;font-size:20px; color:white; text-transform: uppercase; background-color: darkblue; border-radius: 10%;" href="{% url 'browse' paddock.id %}" href="{% url 'browse' paddock.id %}">{{paddock.name}}</a>
-        {% endfor %}
-      </div>
+        <div id="map-display"></div>
+      <h4>Select Paddock:</h4>
+      <span class="text1">
+        <ul style="columns: 3;
+      -webkit-columns: 3;
+      -moz-columns: 3; list-style-type: none;">
+      {% for paddock in paddocks %}
+      <li></li><a style="font-size:20px; color:black;
+      border-radius: 10%;" href="{% url 'browse' paddock.id %}">{{paddock.name}}</a></li>
+      {% endfor %}</ul>
+      </span>
     </div>
   </div>
 </div>

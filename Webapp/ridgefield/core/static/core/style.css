@@ -4,7 +4,7 @@ body {
 }
 
 #index-search {
-    margin: 40px 40px;
+    margin: 100px 40px;
 }
 
 #map-display {
@@ -30,3 +30,11 @@ body {
 .shadowed {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)
 }
+
+/* .text1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:20px; 
+    color:white; 
+    text-transform: uppercase; 
+    border-radius: 10%;
+} */
