@@ -29,7 +29,7 @@
       </h5>
       <div id="map-display">
         {% for paddock in paddocks %}
-        <li><a href="{% url 'browse' paddock.id %}">{{paddock.name}}</a></li>
+        <a style="font-family: Arial, Helvetica, sans-serif;font-size:20px; color:white; text-transform: uppercase; background-color: darkblue; border-radius: 10%;" href="{% url 'browse' paddock.id %}" href="{% url 'browse' paddock.id %}">{{paddock.name}}</a>
         {% endfor %}
       </div>
     </div>
