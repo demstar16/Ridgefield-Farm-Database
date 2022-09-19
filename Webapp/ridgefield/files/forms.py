@@ -4,4 +4,4 @@ from .models import File
 class FileForm(forms.ModelForm):
     class Meta:
         model = File
-        fields = ('name', 'tags', 'description', 'paddocks', 'filedata')
+        fields = ('filedata','tags', 'description', 'paddocks')

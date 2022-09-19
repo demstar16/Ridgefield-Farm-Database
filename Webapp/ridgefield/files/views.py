@@ -10,7 +10,10 @@ def upload(request):
     if request.method == 'POST':
         form = FileForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            upload = form.save(commit=False)
+            upload.uploader = request.user
+            upload.name = upload.filedata.name
+            upload.save()
             return redirect('index')
     else:
         form = FileForm()
@@ -21,8 +24,5 @@ def upload(request):
 @login_required(login_url='accounts/login')
 def viewFile(request, pk):
     file_info = File.objects.get(id=pk)
-    tags = []
-    for tag in file_info.tags.all():
-        tags.append(tag)
-    context = {'file': file_info, 'tags': tags}
+    context = {'file': file_info}
     return render(request, 'files/file.html', context)

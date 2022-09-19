@@ -9,9 +9,9 @@ body {
 
 #map-display {
     margin: 10px;
-    background-image: url("map.jpg");
+    background-image: url("map.png");
     background-size: 100%;
-    height: 650px;
+    height: 1070px;
 }
 
 #map-container {

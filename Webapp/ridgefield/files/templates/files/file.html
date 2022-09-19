@@ -3,29 +3,34 @@
 {% block content %}
 
 <div class="card form-container shadowed">
-    <div>
+    <div class="form-content">
         <div>
             <h1>{{ file.name }}</h1>
+            <p>Last Updated: {{ file.updated }}</p>
         </div>
         <div>
-            <ul>
-                <h4>Tags</h4>
-                {% for tag in tags %}
-                <li>{{tag.name}}</li>
-                {% endfor %}
-            </ul>
-            <ul>
-                <h4>File Information</h4>
-                <li>Created -- {{ file.created }}</li>
-                <li>Updated -- {{ file.updated }}</li>
-                <li>Description -- {{ file.description }}</li>
-            </ul>
+            <h5>Tags</h5>
+            <p>{{file.tags.name}}</p>
+            <h5>Description</h5>
+            <p>{{ file.description }}</p>
         </div>
         <div>
-            <a href="{{ file.filedata.url }}" download><h4>Download</h4></a>
-            <h4>Update</h4>
-            <h4>Delete</h4>
+            <h5>Created</h5>
+            <p>{{ file.created }}</p>
+            <h5>Uploaded By</h5>
+            <td><a href="{% url 'profile' file.uploader.id %}">{{file.uploader.username}}</a></td>
         </div>
+        <hr>
+        <div class="btn-group">
+            <a href="{{ file.filedata.url }}" download>
+                <button type="button" class="btn btn-primary">Download</button>
+            </a>
+            <button type="button" class="btn btn-success">Update</button>
+
+            {% if request.user == file.uploader %}
+            <button type="button" class="btn btn-danger">Delete</button>
+            {% endif %}
+        </div> 
     </div>
 </div>
 
