@@ -19,17 +19,15 @@
       </thead>
       <tbody id="myTable">
         {% for file in files %}
-        <a href="{% url 'file' file.id %}">
-            <tr>
-                <td>{{file.name}}</td>
-                <td>paddock1</td>
-                <td>2022</td>
-                <td>soil</td>
-                <td>1.3mb</td>
-                <td>{{file.uploader.username}}</td>
-                <td>{{file.updated}}</td>
-            </tr>
-        </a>
+          <tr>
+              <td><a href="{% url 'file' file.id %}">{{file.name}}</a></td>
+              <td>paddock1</td>
+              <td>2022</td>
+              <td>soil</td>
+              <td>1.3mb</td>
+              <td><a href="/">{{file.uploader.username}}</a></td>
+              <td>{{file.updated}}</td>
+          </tr>
         {% endfor %}
       </tbody>
     </table>

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from accounts.forms import AccessRequestForm
 
@@ -12,7 +12,10 @@ def register(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return render(request, 'registration/request_sent.html')
+            return redirect('submitted')
     else:
         form = AccessRequestForm()
     return render(request, 'registration/register.html', {'form': form})
+
+def submitted(request):
+    return render(request, 'registration/request_sent.html')
