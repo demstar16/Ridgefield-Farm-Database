@@ -1,4 +1,0 @@
-Database dump files can be restored with the command 
-    python manage.py dbrestore
-Backup can be made with command 
-    python manage.py dbbackup
