@@ -6,4 +6,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('upload/', views.upload, name="upload"),
     path('id/<str:pk>/', views.viewFile, name="file"),
+    path('delete_confirm/<str:pk>/', views.delete_confirm, name="delete_confirm"),
+    path('file_delete/<str:pk>/', views.file_delete, name='file_delete'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

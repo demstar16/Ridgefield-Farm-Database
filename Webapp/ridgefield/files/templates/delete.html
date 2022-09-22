@@ -7,10 +7,15 @@
       <div class="form-content">
         <form method="POST" action="">
             {% csrf_token %}
-            <p>Are you sure you want to delete "{{obj}}"?</p>
+            <p>Are you sure you want to delete the file: "{{ file.name }}"?</p>
         
             <a href="{{request.META.HTTP_REFERER}}">Go Back</a>
-            <input type="submit" value="Confirm" />
+
+
+            <a href="{% url 'file_delete' file.id %}">
+              <button type="button" class="btn btn-outline-danger">Confirm</button>
+            </a>
+           <!--<input type="submit" value="Confirm" />--> 
         </form>
       </div>
     </div>
