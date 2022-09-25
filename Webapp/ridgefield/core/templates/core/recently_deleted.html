@@ -3,10 +3,7 @@
 {% block content %}
 
 <div class="container card" style="margin-top: 50px;">
-    <h2 style="text-align: center;">Browse Files</h2>
-    <h5 style="text-align: center;">
-      <a href="{% url 'recently_deleted' %}">Recently Deleted</a>
-    </h5>
+    <h2 style="text-align: center; color: crimson;">Recently Deleted</h2>
     <input class="form-control" id="myInput" type="text" placeholder="Search..">         
     <table class="table table-hover">
       <thead>
@@ -22,6 +19,8 @@
       </thead>
       <tbody id="myTable">
         {% for file in files %}
+        <!-- For my SoftDeletionModel Implementation -->
+        <!--{% if file.deleted_at != None %}-->
           <tr>
               <td><a href="{% url 'file' file.id %}">{{file.name}}</a></td>
               <td>{{file.paddocks.name}}</td>
@@ -31,6 +30,7 @@
               <td><a href="{% url 'profile' file.uploader.id %}">{{file.uploader.username}}</a></td>
               <td>{{file.updated}}</td>
           </tr>
+        <!--{% endif %}-->
         {% endfor %}
       </tbody>
     </table>

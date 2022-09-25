@@ -41,4 +41,4 @@ def file_delete(request, pk):
     if request.user.id == file.uploader.id:
         file.delete()
     return redirect('browse')
-    
+

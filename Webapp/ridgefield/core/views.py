@@ -40,3 +40,11 @@ def byPaddock(request, pk):
     files = File.objects.filter(paddocks=pk)
     context = {'files': files}
     return render(request, 'core/browse.html', context)
+
+
+@login_required(login_url='accounts/login')
+def viewRecentlyDeleted(request, pk):
+    files = File.objects.all()
+    context = {'files': files}
+    return render(request, 'core/recently_deleted.html', context)
+
