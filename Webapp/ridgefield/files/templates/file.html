@@ -28,7 +28,9 @@
             <button type="button" class="btn btn-success">Update</button>
 
             {% if request.user == file.uploader %}
-            <button type="button" class="btn btn-danger">Delete</button>
+            <a href="{% url 'delete_confirm' file.id %}">
+                <button type="button" class="btn btn-danger">Delete</button>
+            </a>
             {% endif %}
         </div> 
     </div>

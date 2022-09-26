@@ -30,7 +30,7 @@ def search(request):
 
 @login_required(login_url='accounts/login')
 def browse(request):
-    files = File.objects.all()
+    files = File.objects.all().filter(deleted=0)
     context = {'files': files}
     return render(request, 'core/browse.html', context)
 
@@ -40,3 +40,11 @@ def byPaddock(request, pk):
     files = File.objects.filter(paddocks=pk)
     context = {'files': files}
     return render(request, 'core/browse.html', context)
+
+
+@login_required(login_url='accounts/login')
+def viewRecentlyDeleted(request):
+    files = File.objects.all().filter(deleted=1)
+    context = {'files': files}
+    return render(request, 'core/recently_deleted.html', context)
+

@@ -1,6 +1,7 @@
 from django.db import models
 from accounts.models import User
 
+
 # Create your models here.
 class Paddock(models.Model):
     name = models.CharField(max_length=50)
@@ -14,6 +15,7 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+
 class File(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField(null=True, blank=True)
@@ -23,9 +25,15 @@ class File(models.Model):
     paddocks = models.ForeignKey(Paddock, on_delete=models.SET_NULL, null=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
-
+    deleted = models.IntegerField(default=0)
+    
     class Meta:
         ordering = ['-updated']
+    
 
     def __str__(self):
         return self.name
+    
+
+
+
