@@ -20,9 +20,21 @@
         {% for file in files %}
           <tr>
               <td><a href="{% url 'file' file.id %}">{{file.name}}</a></td>
-              <td type="button" class="btn btn-secondary">Restore</td>
+              <td>
+                <a href="{% url 'fileRestore' file.id %}">
+                  <button type="button" class="btn btn-secondary">
+                    Restore
+                  </button>
+                </a>
+              </td>
               <td>{{file.updated}}</td>
-              <td type="button" class="btn btn-danger" style="text-align=center;">Delete</td>
+              <td>
+                <a href="{% url 'permanentDelete' file.id %}">
+                  <button type="button" class="btn btn-danger">
+                    Delete
+                  </button>
+                </a>
+              </td>
               
           </tr>
         {% endfor %}

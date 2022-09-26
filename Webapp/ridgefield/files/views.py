@@ -1,10 +1,11 @@
-from datetime import datetime
+
 from django.shortcuts import render, redirect
 from .forms import FileForm
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
 from .models import File
-from django.http import HttpResponse
+from core.views import browse
+
 
 # Create your views here.
 @login_required(login_url='accounts/login')
@@ -38,9 +39,21 @@ def delete_confirm(request, pk):
 @login_required(login_url='accounts/login')
 def file_delete(request, pk):
     file = File.objects.get(id=pk)
-    context = File.objects.all()
     if request.user.id == file.uploader.id:
-        file.deleted_at()
-        
-    return render(request, "browse.html", context)
+        file.deleted = 1
+        file.save()
+    return redirect('browse')
+
+@login_required(login_url='accounts/login')
+def fileRestore(request, pk):
+    file = File.objects.get(id=pk)
+    file.deleted = 0
+    file.save()
+    return redirect('browse')
+
+@login_required(login_url='accounts/login')
+def permanentDelete(request, pk):
+    file = File.objects.get(id=pk)
+    file.delete()
+    return redirect('browse')
 
