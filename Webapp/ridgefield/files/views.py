@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import render, redirect
 from .forms import FileForm
 from django.core.files.storage import FileSystemStorage
@@ -37,8 +38,9 @@ def delete_confirm(request, pk):
 @login_required(login_url='accounts/login')
 def file_delete(request, pk):
     file = File.objects.get(id=pk)
-    #if request.method=="POST":
+    context = File.objects.all()
     if request.user.id == file.uploader.id:
-        file.delete()
-    return redirect('browse')
+        file.deleted_at()
+        
+    return render(request, "browse.html", context)
 

@@ -4,33 +4,27 @@
 
 <div class="container card" style="margin-top: 50px;">
     <h2 style="text-align: center; color: crimson;">Recently Deleted</h2>
+    <h6 style="text-align: center;"> <a href="{{request.META.HTTP_REFERER}}">Go Back</a> </h6>
     <input class="form-control" id="myInput" type="text" placeholder="Search..">         
     <table class="table table-hover">
       <thead>
         <tr>
           <th>Filename</th>
-          <th>Paddock</th>
-          <th>Year</th>
-          <th>Tags</th>
-          <th>Size</th>
-          <th>Uploaded By</th>
-          <th>Last Edited</th>
+          <th>Restore</th>
+          <th>Uploaded</th>
+          <th>Permanently Delete</th>
+          
         </tr>
       </thead>
       <tbody id="myTable">
         {% for file in files %}
-        <!-- For my SoftDeletionModel Implementation -->
-        <!--{% if file.deleted_at != None %}-->
           <tr>
               <td><a href="{% url 'file' file.id %}">{{file.name}}</a></td>
-              <td>{{file.paddocks.name}}</td>
-              <td>2022</td>
-              <td>{{file.tags.name}}</td>
-              <td>{{file.filedata.file.size}} Bytes</td>
-              <td><a href="{% url 'profile' file.uploader.id %}">{{file.uploader.username}}</a></td>
+              <td type="button" class="btn btn-secondary">Restore</td>
               <td>{{file.updated}}</td>
+              <td type="button" class="btn btn-danger" style="text-align=center;">Delete</td>
+              
           </tr>
-        <!--{% endif %}-->
         {% endfor %}
       </tbody>
     </table>
