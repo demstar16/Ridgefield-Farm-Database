@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'core.apps.CoreConfig',
     'files.apps.FilesConfig',
+
+    'django_unused_media', # Potential Lib for clearing of files
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -50,10 +52,6 @@ LOGOUT_REDIRECT_URL = "/"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-
-# For Database Backups
-STATICFILES_DIRS: [BASE_DIR / 'static']
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
