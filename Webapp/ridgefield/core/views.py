@@ -43,7 +43,7 @@ def byPaddock(request, pk):
 
 
 @login_required(login_url='accounts/login')
-def viewRecentlyDeleted(request, pk):
+def viewRecentlyDeleted(request):
     files = File.objects.all()
     context = {'files': files}
     return render(request, 'core/recently_deleted.html', context)
