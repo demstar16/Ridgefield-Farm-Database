@@ -11,6 +11,8 @@
         <div>
             <h5>Tags</h5>
             <p>{{file.tags.name}}</p>
+            <h5>Paddocks</h5>
+            <p>{{file.paddocks.name}}</p>
             <h5>Description</h5>
             <p>{{ file.description }}</p>
         </div>
@@ -20,13 +22,18 @@
             <h5>Uploaded By</h5>
             <td><a href="{% url 'profile' file.uploader.id %}">{{file.uploader.username}}</a></td>
         </div>
+        <br>
+        <a href="{% url 'edit' file.id %}">
+            <button type="button" class="btn btn-dark">Edit Details</button>
+        </a><br><br>
         <hr>
         <div class="btn-group">
             <a href="{{ file.filedata.url }}" download>
-                <button type="button" class="btn btn-primary">Download</button>
+                <button type="button" class="btn btn-success">Download</button>
             </a>
-            <button type="button" class="btn btn-success">Update</button>
-
+            <a href="{% url 'update' file.id %}">
+                <button type="button" class="btn btn-primary">Update</button>
+            </a>
             {% if request.user == file.uploader %}
             <a href="{% url 'delete_confirm' file.id %}">
                 <button type="button" class="btn btn-danger">Delete</button>

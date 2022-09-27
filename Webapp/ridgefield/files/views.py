@@ -1,9 +1,9 @@
 
 from django.shortcuts import render, redirect
-from .forms import FileForm
+from .forms import FileForm, FileEditForm, FileUpdateForm
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
-from .models import File
+from .models import File, Tag, Paddock
 from core.views import browse
 
 
@@ -57,3 +57,43 @@ def permanentDelete(request, pk):
     file.delete()
     return redirect('browse')
 
+@login_required(login_url='accounts/login')
+def edit(request, pk):
+    if request.method == 'POST':
+        form = FileEditForm(request.POST, request.FILES)
+        if form.is_valid():
+            updated = File.objects.get(id=pk)
+            updated.name = form.data['name']
+            updated.description = form.data['description']
+            tag = Tag.objects.get(id=form.data['tags'])
+            updated.tags = tag
+            paddock = Paddock.objects.get(id=form.data['paddocks'])
+            updated.paddocks = paddock
+            updated.save()
+            return redirect('file', pk=updated.id)
+    else:
+        file = File.objects.get(id=pk)
+        form = FileEditForm(initial = {
+            'name': file.name,
+            'tags': file.tags,
+            'paddocks': file.paddocks,
+            'description': file.description
+        })
+    context = {'form': form}
+    return render(request, 'edit.html', context)
+
+@login_required(login_url='accounts/login')
+def update(request, pk):
+    if request.method == 'POST':
+        form = FileUpdateForm(request.POST, request.FILES)
+        if form.is_valid():
+            file = form.save(commit=False)
+            updated = File.objects.get(id=pk)
+            updated.filedata = file.filedata
+            updated.name = file.filedata.name
+            updated.save()
+            return redirect('file', pk=updated.id)
+    else:
+        form = FileUpdateForm()
+    context = {'form': form}
+    return render(request, 'update.html', context)

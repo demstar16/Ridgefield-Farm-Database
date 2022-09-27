@@ -10,4 +10,6 @@ urlpatterns = [
     path('file_delete/<str:pk>/', views.file_delete, name='file_delete'),
     path('fileRestore/<str:pk>/', views.fileRestore, name='fileRestore'),
     path('permenantDelete/<str:pk>/', views.permanentDelete, name='permanentDelete'),
+    path('edit/<str:pk>/', views.edit, name='edit'),
+    path('update/<str:pk>/', views.update, name='update'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
