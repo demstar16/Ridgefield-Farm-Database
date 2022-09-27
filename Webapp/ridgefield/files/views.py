@@ -17,7 +17,7 @@ def upload(request):
             upload.uploader = request.user
             upload.name = upload.filedata.name
             upload.save()
-            return redirect('index')
+            return redirect('file', upload.id)
     else:
         form = FileForm()
     context = {'form': form}

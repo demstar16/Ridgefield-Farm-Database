@@ -4,42 +4,76 @@
 
 <div class="card form-container shadowed">
     <div class="form-content">
+        <h2>{{file.name}}</h2><hr>
         <div>
-            <h1>{{ file.name }}</h1>
-            <p>Last Updated: {{ file.updated }}</p>
+            <div>
+                <div>
+                    <h4>
+                        Details  
+                        <a href="{% url 'edit' file.id %}">
+                            <button type="button" class="btn btn-secondary btn-sm">Edit</button>
+                        </a>
+                    </h4>
+                    <table class="table table-striped table-bordered">
+                        <tr>
+                            <th>Title</th>
+                            <td>{{file.name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <td>{{file.description}}</td>
+                        </tr>
+                        <tr>
+                            <th>Tags</th>
+                            <td>{{file.tags.name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Paddocks</th>
+                            <td>{{file.paddocks.name}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <div>
+                    <h4>File Information</h4>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Last Updated</th>
+                            <td>{{file.updated}}</td>
+                        </tr>
+                        <tr>
+                            <th>Filesize</th>
+                            <td>{{file.filedata.size}} Bytes</td>
+                        </tr>
+                        <tr>
+                            <th>Uploader</th>
+                            <td><a href="{% url 'profile' file.uploader.id %}">{{file.uploader.username}}</a></td>
+                        </tr>
+                        <tr>
+                            <th>Upload Date</th>
+                            <td>{{file.created}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <div class="btn-group">
+                        <a href="{{ file.filedata.url }}" download>
+                            <button type="button" class="btn btn-success">Download</button>
+                        </a>
+                        <a href="{% url 'update' file.id %}">
+                            <button type="button" class="btn btn-primary">Update</button>
+                        </a>
+                        {% if request.user == file.uploader %}
+                        <a href="{% url 'delete_confirm' file.id %}">
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </a>
+                        {% endif %}
+                    </div> 
+                </div>
+            </div>
         </div>
-        <div>
-            <h5>Tags</h5>
-            <p>{{file.tags.name}}</p>
-            <h5>Paddocks</h5>
-            <p>{{file.paddocks.name}}</p>
-            <h5>Description</h5>
-            <p>{{ file.description }}</p>
-        </div>
-        <div>
-            <h5>Created</h5>
-            <p>{{ file.created }}</p>
-            <h5>Uploaded By</h5>
-            <td><a href="{% url 'profile' file.uploader.id %}">{{file.uploader.username}}</a></td>
-        </div>
-        <br>
-        <a href="{% url 'edit' file.id %}">
-            <button type="button" class="btn btn-dark">Edit Details</button>
-        </a><br><br>
-        <hr>
-        <div class="btn-group">
-            <a href="{{ file.filedata.url }}" download>
-                <button type="button" class="btn btn-success">Download</button>
-            </a>
-            <a href="{% url 'update' file.id %}">
-                <button type="button" class="btn btn-primary">Update</button>
-            </a>
-            {% if request.user == file.uploader %}
-            <a href="{% url 'delete_confirm' file.id %}">
-                <button type="button" class="btn btn-danger">Delete</button>
-            </a>
-            {% endif %}
-        </div> 
     </div>
 </div>
 
