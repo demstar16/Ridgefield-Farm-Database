@@ -3,6 +3,7 @@ from accounts.models import User
 from files.models import Paddock, File
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+# from .filters import FileFilter
 
 # Create your views here.
 @login_required(login_url='accounts/login')
@@ -20,12 +21,14 @@ def viewProfile(request, pk):
 
 @login_required(login_url='accounts/login')
 def search(request):
+    # myFilter = FileFilter()
     q = request.GET.get('q')
     files = File.objects.filter(
         Q(name__icontains=q) |
         Q(description__icontains=q)
     )
-    context = {'query': q, 'files': files}
+    context = {'query': q, 'files': files} 
+    # 'myFilter':myFilter}
     return render(request, 'core/search.html', context)
 
 @login_required(login_url='accounts/login')

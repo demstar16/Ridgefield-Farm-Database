@@ -6,7 +6,6 @@ from django.contrib.auth.decorators import login_required
 from .models import File
 from core.views import browse
 
-
 # Create your views here.
 @login_required(login_url='accounts/login')
 def upload(request):
@@ -28,6 +27,7 @@ def upload(request):
 def viewFile(request, pk):
     file_info = File.objects.get(id=pk)
     context = {'file': file_info}
+
     return render(request, 'file.html', context)
 
 @login_required(login_url='accounts/login')

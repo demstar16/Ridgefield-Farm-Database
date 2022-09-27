@@ -9,6 +9,7 @@
 <div class="container">
   <div id="index-search" class="shadowed">
   <form method="GET" action="{% url 'search' %}">
+    {{myFilter.form}}
   <div class="input-group mb-3">
     <input type="text" class="form-control" name="q" placeholder="Search">
     <div class="input-group-append">
