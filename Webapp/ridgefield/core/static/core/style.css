@@ -38,3 +38,6 @@ body {
     text-transform: uppercase; 
     border-radius: 10%;
 } */
+
+.paddock-list {font-size:20px; color:black;
+    border-radius: 10%;}

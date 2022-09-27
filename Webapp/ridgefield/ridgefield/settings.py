@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'files.apps.FilesConfig',
 
-    'django_unused_media', # Potential Lib for clearing of files
+    # 'django_unused_media', # Potential Lib for clearing of files
+
+    'django_filters'
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
