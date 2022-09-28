@@ -1,0 +1,36 @@
+{% extends "default.html" %}
+
+{% block main %}
+<div class="container">
+  <div class="card form-container shadowed">
+        <table id="example1" class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th>id</th>
+            <th>username</th>
+            <th>email</th>
+            <th>role</th>
+            <th>state</th>
+            <th>examine</th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for user in users %}
+            <tr>
+              <td>{{ user.id }}</td>
+              <td>{{ user.username }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.role }}</td>
+              <td>{% if user.is_active == 0 %}frozen{% elif user.is_active == 1 %}active{% else %}
+                close{% endif %}</td>
+              <td class="text-center">
+                <a href="{% url 'audit_activate' user.id %}" class="btn bg-olive btn-xs">approved</a>
+                <a href="{% url 'audit_freeze' user.id %}" class="btn bg-olive btn-xs">refuse</a>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+  </div>
+</div>
+{% endblock %}
