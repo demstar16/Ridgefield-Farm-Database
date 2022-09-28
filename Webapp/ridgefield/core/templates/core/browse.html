@@ -7,37 +7,48 @@
     <h5 style="text-align: center;">
       <a href="{% url 'recently_deleted' %}">Recently Deleted</a>
     </h5>
-    <input class="form-control" id="myInput" type="text" placeholder="Search..">         
-    <table class="table table-hover">
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <br>
+    <table class="table table-hover" id="dtBasicExample">
       <thead>
         <tr>
-          <th>Filename</th>
-          <th>Paddock</th>
-          <th>Year</th>
-          <th>Tags</th>
-          <th>Size</th>
-          <th>Uploaded By</th>
-          <th>Last Edited</th>
+          <th class="th-sm red">Filename</th>
+          <th class="th-sm red">Paddock</th>
+          <th class="th-sm red">Year</th>
+          <th class="th-sm red">Tags</th>
+          <th class="th-sm red">Uploaded By</th>
+          <th class="th-sm red">Last Edited</th>
         </tr>
       </thead>
       <tbody id="myTable">
+        <!-- removed file size for the moment due to errors -->
         {% for file in files %}
           <tr>
               <td><a href="{% url 'file' file.id %}">{{file.name}}</a></td>
               <td>{{file.paddocks.name}}</td>
+              <!-- No value for date in File object -->
               <td>2022</td>
               <td>{{file.tags.name}}</td>
-              <td>{{file.filedata.file.size}} Bytes</td>
               <td><a href="{% url 'profile' file.uploader.id %}">{{file.uploader.username}}</a></td>
               <td>{{file.updated}}</td>
           </tr>
         {% endfor %}
       </tbody>
+      <tfoot>
+        <tr>
+          <th class="th-sm grey">Filename</th>
+          <th class="th-sm grey">Paddock</th>
+          <th class="th-sm grey">Year</th>
+          <th class="th-sm grey">Tags</th>
+          <th class="th-sm grey">Uploaded By</th>
+          <th class="th-sm grey">Last Edited</th>
+        </tr>
+      </tfoot>
     </table>
 </div>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function(){ 
       $("#myInput").on("keyup", function() {
         var value = $(this).val().toLowerCase();
         $("#myTable tr").filter(function() {
@@ -45,6 +56,13 @@
         });
       });
     });
+
+    // mdb script for datatables
+    $(document).ready(function(){
+      $('#dtBasicExample').DataTable({searching: false, paging: false});
+      $('.dataTables_length').addClass('bs-select');});
+
+      // , info: false
 </script>
 
 {% endblock %}
