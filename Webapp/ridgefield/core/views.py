@@ -3,7 +3,7 @@ from accounts.models import User
 from files.models import Paddock, File
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
-# from .filters import FileFilter
+# from core.filters import FileFilter
 
 # Create your views here.
 @login_required(login_url='accounts/login')

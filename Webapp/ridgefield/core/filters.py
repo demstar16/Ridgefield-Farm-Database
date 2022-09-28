@@ -1,10 +1,8 @@
-# from django.contrib import admin
+import django_filters
 
-# import django_filters
+from files.models import *
 
-# from .models import *
-
-# class FileFilter(django_filters.FilterSet):
-#     class Meta:
-#         model = File
-#         fields = '__all__'
+class FileFilter(django_filters.FilterSet):
+    class Meta:
+        model = File
+        fields = '__all__'
