@@ -29,11 +29,20 @@ class File(models.Model):
     
     class Meta:
         ordering = ['-updated']
-    
 
     def __str__(self):
         return self.name
+
+
+class PastFile(models.Model):
+    filedata = filedata = models.FileField(upload_to='files/')
+    replaced = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    fileref = models.ForeignKey(File, on_delete=models.CASCADE, related_name="past_versions")
+
+    class Meta:
+        ordering = ['-replaced']
     
 
-
-
+    def __str__(self):
+        return f'[{self.replaced}] {self.fileref.name}'

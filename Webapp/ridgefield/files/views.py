@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from .forms import FileForm, FileEditForm, FileUpdateForm
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
-from .models import File, Tag, Paddock
+from .models import File, Tag, Paddock, PastFile
 from core.views import browse
 
 
@@ -27,7 +27,8 @@ def upload(request):
 @login_required(login_url='accounts/login')
 def viewFile(request, pk):
     file_info = File.objects.get(id=pk)
-    context = {'file': file_info}
+    form = FileUpdateForm()
+    context = {'file': file_info, 'past_versions':file_info.past_versions, 'form': form}
     return render(request, 'file.html', context)
 
 @login_required(login_url='accounts/login')
@@ -62,15 +63,16 @@ def edit(request, pk):
     if request.method == 'POST':
         form = FileEditForm(request.POST, request.FILES)
         if form.is_valid():
-            updated = File.objects.get(id=pk)
-            updated.name = form.data['name']
-            updated.description = form.data['description']
+            edited = File.objects.get(id=pk)
+            edited.name = form.data['name']
+            edited.description = form.data['description']
             tag = Tag.objects.get(id=form.data['tags'])
-            updated.tags = tag
+            edited.tags = tag
             paddock = Paddock.objects.get(id=form.data['paddocks'])
-            updated.paddocks = paddock
-            updated.save()
-            return redirect('file', pk=updated.id)
+            edited.paddocks = paddock
+            edited.save()
+            
+            return redirect('file', pk=edited.id)
     else:
         file = File.objects.get(id=pk)
         form = FileEditForm(initial = {
@@ -89,6 +91,8 @@ def update(request, pk):
         if form.is_valid():
             file = form.save(commit=False)
             updated = File.objects.get(id=pk)
+            backup = PastFile(filedata=updated.filedata, user=request.user, fileref=updated)
+            backup.save()
             updated.filedata = file.filedata
             updated.name = file.filedata.name
             updated.save()
