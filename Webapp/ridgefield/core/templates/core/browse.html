@@ -15,6 +15,7 @@
           <th class="th-sm red">Filename</th>
           <th class="th-sm red">Paddock</th>
           <th class="th-sm red">Year</th>
+          <th class="th-sm red">Size</th>
           <th class="th-sm red">Tags</th>
           <th class="th-sm red">Uploaded By</th>
           <th class="th-sm red">Last Edited</th>
@@ -28,6 +29,7 @@
               <td>{{file.paddocks.name}}</td>
               <!-- No value for date in File object -->
               <td>2022</td>
+              <td>{{file.filedata.file.size}} Bytes</td>
               <td>{{file.tags.name}}</td>
               <td><a href="{% url 'profile' file.uploader.id %}">{{file.uploader.username}}</a></td>
               <td>{{file.updated}}</td>
