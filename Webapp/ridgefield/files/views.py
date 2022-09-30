@@ -1,4 +1,5 @@
-
+from code import interact
+from django.core import management
 from django.shortcuts import render, redirect
 from .forms import FileForm, FileEditForm, FileUpdateForm
 from django.core.files.storage import FileSystemStorage
@@ -38,6 +39,11 @@ def delete_confirm(request, pk):
     return render(request, "delete.html", context)
 
 @login_required(login_url='accounts/login')
+def deleteAllConfirm(request):
+    
+    return render(request, "delete_all.html")
+
+@login_required(login_url='accounts/login')
 def file_delete(request, pk):
     file = File.objects.get(id=pk)
     if request.user.id == file.uploader.id:
@@ -56,6 +62,18 @@ def fileRestore(request, pk):
 def permanentDelete(request, pk):
     file = File.objects.get(id=pk)
     file.delete()
+    return redirect('browse')
+
+@login_required(login_url='accounts/login')
+def cleanDatabase(request):
+    management.call_command('cleanup_unused_media', interactive=False)
+    return redirect('browse')
+
+@login_required(login_url='accounts/login')
+def permenantDeleteAll(request):
+    files = File.objects.all().filter(deleted=1)
+    for file in files:
+        file.delete()
     return redirect('browse')
 
 @login_required(login_url='accounts/login')

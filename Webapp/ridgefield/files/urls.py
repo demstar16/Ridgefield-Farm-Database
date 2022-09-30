@@ -12,4 +12,7 @@ urlpatterns = [
     path('permenantDelete/<str:pk>/', views.permanentDelete, name='permanentDelete'),
     path('edit/<str:pk>/', views.edit, name='edit'),
     path('update/<str:pk>/', views.update, name='update'),
+    path('cleanDatabase', views.cleanDatabase, name='cleanDatabase'),
+    path('permanentDeleteAll', views.permenantDeleteAll, name='permanentDeleteAll'),
+    path('deleteAllConfirm', views.deleteAllConfirm, name='deleteAllConfirm'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -3,8 +3,21 @@
 {% block content %}
 
 <div class="container card" style="margin-top: 50px;">
-    <h2 style="text-align: center; color: crimson;">Recently Deleted</h2>
-    <h6 style="text-align: center;"> <a href="{{request.META.HTTP_REFERER}}">Go Back</a> </h6>
+    <h2 style="text-align: center; color: crimson;">
+      <strong>
+        Recently Deleted
+      </strong>
+    </h2>
+    <h5 style="text-align: center;">
+      <a style="color: forestgreen" href = "{% url 'cleanDatabase' %}">
+        Clean Database 
+      </a>
+    </h5>
+    <h6 style="text-align: center;"> 
+      <a href="{{request.META.HTTP_REFERER}}">
+        Go Back
+      </a> 
+    </h6>
     <input class="form-control" id="myInput" type="text" placeholder="Search..">         
     <table class="table table-hover">
       <thead>
@@ -29,7 +42,8 @@
               </td>
               <td>{{file.updated}}</td>
               <td>
-                <a href="{% url 'permanentDelete' file.id %}">
+
+                <a href="{% url 'delete_confirm' file.id %}">
                   <button type="button" class="btn btn-danger">
                     Delete
                   </button>
@@ -40,6 +54,13 @@
         {% endfor %}
       </tbody>
     </table>
+    <h5 style="text-align: center;">
+      <a style="color: crimson" href = "{% url 'deleteAllConfirm' %}">
+        <button type="button" style="width:100%" class="btn btn-danger">
+          Delete All
+        </button>
+      </a>
+    </h5>
 </div>
 
 <script>

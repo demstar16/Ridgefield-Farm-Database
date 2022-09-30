@@ -101,7 +101,8 @@
                             <button type="button" class="btn btn-success btn-lg">Download</button>
                         </a>
                         {% if request.user == file.uploader %}
-                        <a href="{% url 'delete_confirm' file.id %}">
+                        
+                        <a href="{% url 'file_delete' file.id %}">
                             <button type="button" class="btn btn-danger btn-lg">Delete</button>
                         </a>
                         {% endif %}
