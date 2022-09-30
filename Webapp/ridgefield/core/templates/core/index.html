@@ -34,8 +34,7 @@
       -webkit-columns: 3;
       -moz-columns: 3; list-style-type: none;">
       {% for paddock in paddocks %}
-      <li></li><a style="font-size:20px; color:black;
-      border-radius: 10%;" href="{% url 'browse' paddock.id %}">{{paddock.name}}</a></li>
+      <li></li><a id="list1" href="{% url 'browse' paddock.id %}">{{paddock.name}}</a></li>
       {% endfor %}</ul>
       </span>
     </div>
