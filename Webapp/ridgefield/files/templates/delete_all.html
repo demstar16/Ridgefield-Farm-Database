@@ -9,10 +9,14 @@
             {% csrf_token %}
             <p>Are you sure you want to delete all recently deleted files?</p>
         
-            <a href="{{request.META.HTTP_REFERER}}">Go Back</a>
+            <a href="{% url 'browse' %}">
+              Go Back
+            </a>
 
             <a href="{% url 'permanentDeleteAll'%}">
-              <button type="button" class="btn btn-outline-danger">Confirm</button>
+              <button type="button" class="btn btn-outline-danger">
+                Confirm
+              </button>
             </a>
         </form>
       </div>
