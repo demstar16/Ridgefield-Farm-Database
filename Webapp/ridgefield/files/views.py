@@ -18,6 +18,7 @@ def upload(request):
             upload.uploader = request.user
             upload.name = upload.filedata.name
             upload.save()
+            form.save_m2m()
             return redirect('file', upload.id)
     else:
         form = FileForm()
@@ -84,19 +85,16 @@ def edit(request, pk):
             edited = File.objects.get(id=pk)
             edited.name = form.data['name']
             edited.description = form.data['description']
-            tag = Tag.objects.get(id=form.data['tags'])
-            edited.tags = tag
-            paddock = Paddock.objects.get(id=form.data['paddocks'])
-            edited.paddocks = paddock
+            edited.tags.set(request.POST.getlist('tags'))
+            edited.paddocks.set(request.POST.getlist('paddocks'))
             edited.save()
-            
             return redirect('file', pk=edited.id)
     else:
         file = File.objects.get(id=pk)
         form = FileEditForm(initial = {
             'name': file.name,
-            'tags': file.tags,
-            'paddocks': file.paddocks,
+            'tags': file.tags.all(),
+            'paddocks': file.paddocks.all(),
             'description': file.description
         })
     context = {'form': form}

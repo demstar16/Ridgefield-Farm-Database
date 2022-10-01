@@ -8,7 +8,9 @@
       <hr>
       <div>
         <form method="post" enctype="multipart/form-data">
-          <p>Select a file to replace the existing file with:</p>
+          <div class="alert alert-primary">
+            Select a file to replace the existing copy with
+          </div>
           {% csrf_token %}
           {{ form.as_p }}
           <button type="submit" class="btn btn-primary">Update</button>
