@@ -25,11 +25,23 @@
                         </tr>
                         <tr>
                             <th>Tags</th>
-                            <td>{{file.tags.name}}</td>
+                            <td>
+                                <h5>
+                                    {% for tag in file.tags.all %}
+                                        <span class="badge badge-dark">{{tag.name}}</span>
+                                    {% endfor %}
+                                </h5>
+                            </td>
                         </tr>
                         <tr>
                             <th>Paddocks</th>
-                            <td>{{file.paddocks.name}}</td>
+                            <td>
+                                <h5>
+                                    {% for paddock in file.paddocks.all %}
+                                        <span class="badge badge-light">{{paddock.name}}</span>
+                                    {% endfor %}
+                                </h5>
+                            </td>
                         </tr>
                     </table>
                 </div>

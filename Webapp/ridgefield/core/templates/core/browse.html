@@ -19,20 +19,50 @@
           <th class="th-sm red">Tags</th>
           <th class="th-sm red">Uploaded By</th>
           <th class="th-sm red">Last Edited</th>
+          <th class="th-sm red">Action</th>
         </tr>
       </thead>
       <tbody id="myTable">
-        <!-- removed file size for the moment due to errors -->
         {% for file in files %}
           <tr>
-              <td><a href="{% url 'file' file.id %}">{{file.name}}</a></td>
-              <td>{{file.paddocks.name}}</td>
-              <!-- No value for date in File object -->
-              <td>2022</td>
+              <td><a href="{% url 'file' file.id %}" data-toggle="tooltip" title="View File Info" data-placement="bottom">
+                <span class="font-weight-bolder">{{file.name}}</span></a></td>
+              <td>
+                <h5>
+                  {% for paddock in file.paddocks.all %}
+                    <span class="badge badge-light">{{paddock.name}}</span>
+                  {% endfor %}
+                </h5>
+              </td>
+              <td>{{file.created|date:'Y'}}</td>
               <td>{{file.filedata.file.size}} Bytes</td>
-              <td>{{file.tags.name}}</td>
-              <td><a href="{% url 'profile' file.uploader.id %}">{{file.uploader.username}}</a></td>
+              <td>
+                {% for tag in file.tags.all %}
+                  <span class="badge badge-primary">{{tag.name}}</span>
+                {% endfor %}
+              </td>
+              <td><a href="{% url 'profile' file.uploader.id %}" data-toggle="tooltip" title="View Profile" data-placement="bottom">
+                {{file.uploader.username}}</a></td>
               <td>{{file.updated}}</td>
+              <td>
+                <div class="btn-group">
+                  <a href="{{ file.filedata.url }}" download data-toggle="tooltip" title="Download" data-placement="bottom">
+                    <button type="button" class="btn btn-success">
+                      <i class="material-icons" style="font-size:20px;">download</i>
+                    </button>
+                  </a>
+                  <a href="{% url 'update' file.id %}" data-toggle="tooltip" title="Update" data-placement="bottom">
+                    <button type="button" class="btn btn-primary">
+                      <i class="material-icons" style="font-size:20px;">sync_alt</i>
+                    </button>
+                  </a>
+                  <a href="{% url 'edit' file.id %}" data-toggle="tooltip" title="Edit Details" data-placement="bottom">
+                    <button type="button" class="btn btn-info">
+                      <i class="material-icons" style="font-size:20px;">assignment</i>
+                    </button>
+                  </a>
+                </div> 
+              </td>
           </tr>
         {% endfor %}
       </tbody>
@@ -45,6 +75,7 @@
           <th class="th-sm grey">Tags</th>
           <th class="th-sm grey">Uploaded By</th>
           <th class="th-sm grey">Last Edited</th>
+          <th class="th-sm grey">Action</th>
         </tr>
       </tfoot>
     </table>
@@ -66,6 +97,10 @@
       $('.dataTables_length').addClass('bs-select');});
 
       // , info: false
+
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+    });
 </script>
 
 {% endblock %}
