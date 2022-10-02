@@ -3,7 +3,8 @@
 {% block content %}
 
 <div class="container card" style="margin-top: 50px;">
-    <h2 style="text-align: center;">Browse Files</h2>
+    <h2 style="text-align: center;">{{heading}}
+      <span class="font-italic text-danger">{{heading_param}}</span></h2>
     <h5 style="text-align: center;">
       <a href="{% url 'recently_deleted' %}">Recently Deleted</a>
     </h5>
@@ -13,7 +14,9 @@
       <thead>
         <tr>
           <th class="th-sm red">Filename</th>
-          <th class="th-sm red">Paddock</th>
+          {% if showpaddock %} 
+            <th class="th-sm red">Paddock</th>
+          {% endif %}
           <th class="th-sm red">Year</th>
           <th class="th-sm red">Size</th>
           <th class="th-sm red">Tags</th>
@@ -28,11 +31,15 @@
               <td><a href="{% url 'file' file.id %}" data-toggle="tooltip" title="View File Info" data-placement="bottom">
                 <span class="font-weight-bolder">{{file.name}}</span></a></td>
               <td>
-                <h5>
-                  {% for paddock in file.paddocks.all %}
-                    <span class="badge badge-light">{{paddock.name}}</span>
-                  {% endfor %}
-                </h5>
+                {% if showpaddock %}  
+                  <h5>
+                    {% for paddock in file.paddocks.all %}
+                      <a href="{% url 'browse' paddock.id %}" data-toggle="tooltip" title="View all files for paddock" data-placement="bottom">
+                        <span class="badge badge-light">{{paddock.name}}</span>
+                      </a>
+                    {% endfor %}
+                  </h5>
+                {% endif %}
               </td>
               <td>{{file.created|date:'Y'}}</td>
               <td>{{file.filedata.file.size}} Bytes</td>
@@ -69,7 +76,9 @@
       <tfoot>
         <tr>
           <th class="th-sm grey">Filename</th>
-          <th class="th-sm grey">Paddock</th>
+          {% if showpaddock %} 
+            <th class="th-sm grey">Paddock</th>
+          {% endif %}
           <th class="th-sm grey">Year</th>
           <th class="th-sm grey">Size</th>
           <th class="th-sm grey">Tags</th>
@@ -100,6 +109,14 @@
 
     $(document).ready(function(){
       $('[data-toggle="tooltip"]').tooltip();
+    });
+
+    // modifications for search
+    $(document).ready(function(){
+      $("#myInput").hide();
+      $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf("{{query}}") > -1)
+      });
     });
 </script>
 
