@@ -1,5 +1,6 @@
 from django.urls import path, include
 from . import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('register/', views.register, name='register'),
@@ -7,7 +8,7 @@ urlpatterns = [
 
     path('audit_list/', views.audit_list, name='audit_list'),
     path('audit_activate/<str:pk>/', views.audit_activate, name='audit_activate'),
-    path('audit_freeze/<str:pk>/', views.audit_freeze, name='audit_freeze')
+    path('audit_freeze/<str:pk>/', views.audit_freeze, name='audit_freeze'),
     
     #To enable to send a email from host email, you need to go to 
     #bottom of setting.py to change SMTP config 

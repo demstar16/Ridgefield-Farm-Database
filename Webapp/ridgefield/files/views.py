@@ -111,6 +111,9 @@ def update(request, pk):
             backup.save()
             updated.filedata = file.filedata
             updated.name = file.filedata.name
+            backups = updated.past_versions
+            if backups.count() > 3:
+                backups.earliest('replaced').delete()
             updated.save()
             return redirect('file', pk=updated.id)
     else:
