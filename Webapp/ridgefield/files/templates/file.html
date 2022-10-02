@@ -38,7 +38,9 @@
                             <td>
                                 <h5>
                                     {% for paddock in file.paddocks.all %}
-                                        <span class="badge badge-light">{{paddock.name}}</span>
+                                        <a href="{% url 'browse' paddock.id %}" data-toggle="tooltip" title="View all files for paddock" data-placement="bottom">
+                                            <span class="badge badge-light">{{paddock.name}}</span>
+                                        </a>
                                     {% endfor %}
                                 </h5>
                             </td>
