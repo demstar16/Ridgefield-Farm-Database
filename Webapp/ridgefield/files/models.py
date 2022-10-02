@@ -33,6 +33,10 @@ class File(models.Model):
     def __str__(self):
         return self.name
 
+    def cull_backups(self):
+        backups = self.past_versions
+        if backups.count > 3:
+            backups.earliest().delete()
 
 class PastFile(models.Model):
     filedata = filedata = models.FileField(upload_to='files/')
@@ -42,7 +46,6 @@ class PastFile(models.Model):
 
     class Meta:
         ordering = ['-replaced']
-    
 
     def __str__(self):
         return f'[{self.replaced}] {self.fileref.name}'

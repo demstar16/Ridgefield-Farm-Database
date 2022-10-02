@@ -21,24 +21,29 @@ def viewProfile(request, pk):
 @login_required(login_url='accounts/login')
 def search(request):
     q = request.GET.get('q')
-    files = File.objects.filter(
-        Q(name__icontains=q) |
-        Q(description__icontains=q)
-    )
-    context = {'query': q, 'files': files}
-    return render(request, 'core/search.html', context)
+    files = File.objects.all().filter(deleted=0)
+    heading = "Results for: "
+    showpaddock = True
+    context = {'files': files, 'showpaddock': showpaddock,
+        'heading': heading, 'heading_param': q, 'query': q}
+    return render(request, 'core/browse.html', context)
 
 @login_required(login_url='accounts/login')
 def browse(request):
     files = File.objects.all().filter(deleted=0)
-    context = {'files': files}
+    heading = "All Files"
+    showpaddock = True
+    context = {'files': files, 'showpaddock': showpaddock, 'heading': heading}
     return render(request, 'core/browse.html', context)
 
 @login_required(login_url='accounts/login')
 def byPaddock(request, pk):
     paddock = Paddock.objects.get(id=pk)
     files = File.objects.filter(paddocks=pk)
-    context = {'files': files}
+    heading = "Paddock: "
+    showpaddock = False
+    context = {'files': files, 'showpaddock': showpaddock,
+        'heading': heading, 'heading_param': paddock}
     return render(request, 'core/browse.html', context)
 
 
