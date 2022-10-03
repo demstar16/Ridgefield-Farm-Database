@@ -1,7 +1,7 @@
 from code import interact
 from django.core import management
 from django.shortcuts import render, redirect
-from .forms import FileForm, FileEditForm, FileUpdateForm
+from .forms import FileForm, FileEditForm, FileUpdateForm, TagForm
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
 from .models import File, Tag, Paddock, PastFile
@@ -22,9 +22,21 @@ def upload(request):
             return redirect('file', upload.id)
     else:
         form = FileForm()
-    context = {'form': form}
+        subform = TagForm()
+    context = {'form': form, 'subform': subform}
     return render(request, 'upload.html', context)
 
+@login_required(login_url='accounts/login')
+def newTag(request):
+    if request.method == 'POST':
+        form = TagForm(request.POST)
+        if form.is_valid():
+            tag = form.save()
+            return redirect(request.POST['next'])
+    else:
+        form = TagForm()
+    context = {'form': form}
+    return render(request, 'new_tag.html', context)
 
 @login_required(login_url='accounts/login')
 def viewFile(request, pk):
@@ -97,7 +109,8 @@ def edit(request, pk):
             'paddocks': file.paddocks.all(),
             'description': file.description
         })
-    context = {'form': form}
+        subform = TagForm()
+    context = {'form': form, 'subform': subform}
     return render(request, 'edit.html', context)
 
 @login_required(login_url='accounts/login')
