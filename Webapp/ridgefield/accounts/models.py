@@ -16,8 +16,9 @@ class User(AbstractUser):
     role = models.ForeignKey(Role, on_delete=models.SET_NULL, null=True)
     bio = models.TextField(null=True, blank=True)
     is_active = models.BooleanField(default=False)
+    create_time = models.DateTimeField(auto_now_add=True,null=True, blank=True, verbose_name='Registration time')
 
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['email']
 
     def to_dict(self):
         return {
