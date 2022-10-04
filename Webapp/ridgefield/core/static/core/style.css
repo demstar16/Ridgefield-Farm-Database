@@ -43,3 +43,11 @@ body {
 td, th, tr {text-align: center;}
 
 .dataTables_wrapper .dataTables_paginate .paginate_button {padding: 5px; text-decoration: none; cursor: pointer; text-align: left;}
+
+.float {display: flex; text-align: center;}
+
+.userinfo1 {background: rgb(186, 244, 186);flex-basis: 50%; margin: 10px;}
+
+.userinfo2 {background: rgb(186, 244, 186); flex-basis: 50%; margin: 10px;}
+
+.user-heading {background-color: rgb(186, 244, 186); border-bottom: solid black; border-top: solid black}
