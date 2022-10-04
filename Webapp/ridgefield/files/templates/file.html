@@ -28,7 +28,9 @@
                             <td>
                                 <h5>
                                     {% for tag in file.tags.all %}
+                                    <a href="{% url 'tag' tag.id %}" data-toggle="tooltip" title="View all files with tag" data-placement="bottom">
                                         <span class="badge badge-dark">{{tag.name}}</span>
+                                    </a>
                                     {% endfor %}
                                 </h5>
                             </td>
@@ -38,7 +40,7 @@
                             <td>
                                 <h5>
                                     {% for paddock in file.paddocks.all %}
-                                        <a href="{% url 'browse' paddock.id %}" data-toggle="tooltip" title="View all files for paddock" data-placement="bottom">
+                                        <a href="{% url 'paddock' paddock.id %}" data-toggle="tooltip" title="View all files for paddock" data-placement="bottom">
                                             <span class="badge badge-light">{{paddock.name}}</span>
                                         </a>
                                     {% endfor %}

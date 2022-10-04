@@ -1,4 +1,6 @@
+
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  {% if request.user.is_authenticated %}
   <div class="navbar-collapse collapse w-50 order-1 order-md-0">
       <ul class="navbar-nav mr-auto">
           <li class="nav-item">
@@ -25,14 +27,40 @@
   </div>
   <div class="navbar-collapse collapse w-50 order-3">
       <ul class="navbar-nav ml-auto">
+        {% if request.user.is_superuser %}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+              Admin
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/admin">Admin Portal</a>
+              <a class="dropdown-item" href="{% url 'recently_deleted' %}">Deleted Files</a>
+              <a class="dropdown-item" href="{% url 'audit_list' %}">Account Approvals</a>
+            </div>
+        </li>
+        {% endif %}
           <li class="nav-item">
               <a class="nav-link" href="{% url 'profile' user.id %}">Profile</a>
           </li>
+          
           <li class="nav-item">
               <a class="nav-link" href="{% url 'logout' %}">Logout</a>
           </li>
       </ul>
   </div>
+  {% else %}
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="https://www.uwa.edu.au/">UWA</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="https://www.uwa.edu.au/institutes/institute-of-agriculture/Home">Institute of Agriculture</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="https://www.uwa.edu.au/institutes/institute-of-agriculture/UWA-Farm-Ridgefield">Farm Ridgefield</a>
+    </li>
+  </ul>
+  {% endif %}
 </nav>
 
 
