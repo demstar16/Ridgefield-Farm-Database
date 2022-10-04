@@ -14,9 +14,7 @@
       <thead>
         <tr>
           <th class="th-sm red sort">Filename</th>
-          {% if showpaddock %} 
-            <th class="th-sm red sort">Paddock</th>
-          {% endif %}
+          <th class="th-sm red sort">Paddock</th>
           <th class="th-sm red sort">Year</th>
           <th class="th-sm red sort">Size</th>
           <th class="th-sm red sort">Tags</th>
@@ -31,21 +29,21 @@
               <td><a href="{% url 'file' file.id %}" data-toggle="tooltip" title="View File Info" data-placement="bottom">
                 <span class="font-weight-bolder">{{file.name}}</span></a></td>
               <td>
-                {% if showpaddock %}  
-                  <h5>
-                    {% for paddock in file.paddocks.all %}
-                      <a href="{% url 'browse' paddock.id %}" data-toggle="tooltip" title="View all files for paddock" data-placement="bottom">
-                        <span class="badge badge-light">{{paddock.name}}</span>
-                      </a>
-                    {% endfor %}
-                  </h5>
-                {% endif %}
+                <h5>
+                  {% for paddock in file.paddocks.all %}
+                    <a href="{% url 'paddock' paddock.id %}" data-toggle="tooltip" title="View all files for paddock" data-placement="bottom">
+                      <span class="badge badge-light">{{paddock.name}}</span>
+                    </a>
+                  {% endfor %}
+                </h5>
               </td>
               <td>{{file.created|date:'Y'}}</td>
               <td>{{file.filedata.file.size}} Bytes</td>
               <td>
                 {% for tag in file.tags.all %}
-                  <span class="badge badge-primary">{{tag.name}}</span>
+                  <a href="{% url 'tag' tag.id %}" data-toggle="tooltip" title="View all files with tag" data-placement="bottom">
+                    <span class="badge badge-primary">{{tag.name}}</span>
+                  </a>
                 {% endfor %}
               </td>
               <td><a href="{% url 'profile' file.uploader.id %}" data-toggle="tooltip" title="View Profile" data-placement="bottom">
@@ -76,9 +74,7 @@
       <tfoot>
         <tr>
           <th class="th-sm grey">Filename</th>
-          {% if showpaddock %} 
-            <th class="th-sm grey">Paddock</th>
-          {% endif %}
+          <th class="th-sm grey">Paddock</th>
           <th class="th-sm grey">Year</th>
           <th class="th-sm grey">Size</th>
           <th class="th-sm grey">Tags</th>
@@ -113,10 +109,13 @@
 
     // modifications for search
     $(document).ready(function(){
-      $("#myInput").hide();
-      $("#myTable tr").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf("{{query}}") > -1)
-      });
+      str = "{{query}}"
+      if(str.length>0) {
+        $("#myInput").hide();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf("{{query}}") > -1)
+        });
+      }
     });
 </script>
 
