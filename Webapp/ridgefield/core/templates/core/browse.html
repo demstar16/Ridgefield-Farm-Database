@@ -13,16 +13,16 @@
     <table class="table table-hover" id="dtBasicExample">
       <thead>
         <tr>
-          <th class="th-sm red">Filename</th>
+          <th class="th-sm red sort">Filename</th>
           {% if showpaddock %} 
-            <th class="th-sm red">Paddock</th>
+            <th class="th-sm red sort">Paddock</th>
           {% endif %}
-          <th class="th-sm red">Year</th>
-          <th class="th-sm red">Size</th>
-          <th class="th-sm red">Tags</th>
-          <th class="th-sm red">Uploaded By</th>
-          <th class="th-sm red">Last Edited</th>
-          <th class="th-sm red">Action</th>
+          <th class="th-sm red sort">Year</th>
+          <th class="th-sm red sort">Size</th>
+          <th class="th-sm red sort">Tags</th>
+          <th class="th-sm red sort">Uploaded By</th>
+          <th class="th-sm red sort">Last Edited</th>
+          <th class="th-sm red sort">Action</th>
         </tr>
       </thead>
       <tbody id="myTable">
@@ -102,10 +102,10 @@
 
     // mdb script for datatables
     $(document).ready(function(){
-      $('#dtBasicExample').DataTable({searching: false, paging: false});
+      $('#dtBasicExample').DataTable({searching: false});
       $('.dataTables_length').addClass('bs-select');});
 
-      // , info: false
+      // paging: false , info: false
 
     $(document).ready(function(){
       $('[data-toggle="tooltip"]').tooltip();
