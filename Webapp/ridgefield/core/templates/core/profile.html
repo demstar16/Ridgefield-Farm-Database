@@ -15,13 +15,19 @@
             <p>{{ user.role.name }}</p>
             <h4>Bio</h4>
             <p>{{ user.bio }}</p>
-            </ul>
         </div>
         <div class='userinfo2'>
             <h2 class="user-heading">User Activity</h2>
             <h4>Last Login</h4>
             <p>Last Login: {{ user.last_login }}</p>
-            </ul>
+            <h4>Recent Uploads</h4>
+            
+                {% for upload in uploads %}
+                    <ul>
+                        <li><a href="{% url 'file' upload.id %}" class="text-dark">{{upload.name}}</a></li>
+                    </ul>
+                {% endfor %}
+
         </div>
     </div>
 </div>
