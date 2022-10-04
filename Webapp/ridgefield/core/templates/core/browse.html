@@ -13,14 +13,16 @@
     <table class="table table-hover" id="dtBasicExample">
       <thead>
         <tr>
-          <th class="th-sm red">Filename</th>
-          <th class="th-sm red">Paddock</th>
-          <th class="th-sm red">Year</th>
-          <th class="th-sm red">Size</th>
-          <th class="th-sm red">Tags</th>
-          <th class="th-sm red">Uploaded By</th>
-          <th class="th-sm red">Last Edited</th>
-          <th class="th-sm red">Action</th>
+          <th class="th-sm red sort">Filename</th>
+          {% if showpaddock %} 
+            <th class="th-sm red sort">Paddock</th>
+          {% endif %}
+          <th class="th-sm red sort">Year</th>
+          <th class="th-sm red sort">Size</th>
+          <th class="th-sm red sort">Tags</th>
+          <th class="th-sm red sort">Uploaded By</th>
+          <th class="th-sm red sort">Last Edited</th>
+          <th class="th-sm red sort">Action</th>
         </tr>
       </thead>
       <tbody id="myTable">
@@ -28,22 +30,22 @@
           <tr>
               <td><a href="{% url 'file' file.id %}" data-toggle="tooltip" title="View File Info" data-placement="bottom">
                 <span class="font-weight-bolder">{{file.name}}</span></a></td>
-              <td> 
+              <td>
+                {% if showpaddock %}  
                   <h5>
                     {% for paddock in file.paddocks.all %}
-                      <a href="{% url 'paddock' paddock.id %}" data-toggle="tooltip" title="View all files for paddock" data-placement="bottom">
+                      <a href="{% url 'browse' paddock.id %}" data-toggle="tooltip" title="View all files for paddock" data-placement="bottom">
                         <span class="badge badge-light">{{paddock.name}}</span>
                       </a>
                     {% endfor %}
                   </h5>
+                {% endif %}
               </td>
               <td>{{file.created|date:'Y'}}</td>
               <td>{{file.filedata.file.size}} Bytes</td>
               <td>
                 {% for tag in file.tags.all %}
-                  <a href="{% url 'tag' tag.id %}" data-toggle="tooltip" title="View all files with tag" data-placement="bottom">
-                    <span class="badge badge-primary">{{tag.name}}</span>
-                  </a>
+                  <span class="badge badge-primary">{{tag.name}}</span>
                 {% endfor %}
               </td>
               <td><a href="{% url 'profile' file.uploader.id %}" data-toggle="tooltip" title="View Profile" data-placement="bottom">
@@ -74,7 +76,9 @@
       <tfoot>
         <tr>
           <th class="th-sm grey">Filename</th>
-          <th class="th-sm grey">Paddock</th>
+          {% if showpaddock %} 
+            <th class="th-sm grey">Paddock</th>
+          {% endif %}
           <th class="th-sm grey">Year</th>
           <th class="th-sm grey">Size</th>
           <th class="th-sm grey">Tags</th>
@@ -98,10 +102,10 @@
 
     // mdb script for datatables
     $(document).ready(function(){
-      $('#dtBasicExample').DataTable({searching: false, paging: false});
+      $('#dtBasicExample').DataTable({searching: false});
       $('.dataTables_length').addClass('bs-select');});
 
-      // , info: false
+      // paging: false , info: false
 
     $(document).ready(function(){
       $('[data-toggle="tooltip"]').tooltip();
@@ -109,13 +113,10 @@
 
     // modifications for search
     $(document).ready(function(){
-      str = "{{query}}"
-      if(str.length>0) {
-        $("#myInput").hide();
-        $("#myTable tr").filter(function() {
-          $(this).toggle($(this).text().toLowerCase().indexOf("{{query}}") > -1)
-        });
-      }
+      $("#myInput").hide();
+      $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf("{{query}}") > -1)
+      });
     });
 </script>
 
