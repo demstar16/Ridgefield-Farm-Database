@@ -15,4 +15,5 @@ urlpatterns = [
     path('cleanDatabase', views.cleanDatabase, name='cleanDatabase'),
     path('permanentDeleteAll', views.permenantDeleteAll, name='permanentDeleteAll'),
     path('deleteAllConfirm', views.deleteAllConfirm, name='deleteAllConfirm'),
+    path('newtag/', views.newTag, name="new_tag"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
