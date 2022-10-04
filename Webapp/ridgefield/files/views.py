@@ -75,6 +75,7 @@ def fileRestore(request, pk):
 def permanentDelete(request, pk):
     file = File.objects.get(id=pk)
     file.delete()
+    management.call_command('cleanup_unused_media', interactive=False)
     return redirect('browse')
 
 @login_required(login_url='accounts/login')
@@ -87,6 +88,7 @@ def permenantDeleteAll(request):
     files = File.objects.all().filter(deleted=1)
     for file in files:
         file.delete()
+    management.call_command('cleanup_unused_media', interactive=False)
     return redirect('browse')
 
 @login_required(login_url='accounts/login')
@@ -128,6 +130,7 @@ def update(request, pk):
             if backups.count() > 3:
                 backups.earliest('replaced').delete()
             updated.save()
+            management.call_command('cleanup_unused_media', interactive=False)
             return redirect('file', pk=updated.id)
     else:
         form = FileUpdateForm()

@@ -58,16 +58,22 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)
 }
 
-/* .text1 {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size:20px; 
-    color:white; 
-    text-transform: uppercase; 
-    border-radius: 10%;
-} */
-
 #list1 {font-size:20px; color:black; border-radius: 10%;}
 
 .red {background-color: red;}
 
 .grey {background-color: grey;}
+
+.sort:hover {cursor: pointer; background-color: lightpink;}
+
+td, th, tr {text-align: center;}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {padding: 5px; text-decoration: none; cursor: pointer; text-align: left;}
+
+.float {display: flex; text-align: center;}
+
+.userinfo1 {background: rgb(186, 244, 186);flex-basis: 50%; margin: 10px;}
+
+.userinfo2 {background: rgb(186, 244, 186); flex-basis: 50%; margin: 10px;}
+
+.user-heading {background-color: rgb(186, 244, 186); border-bottom: solid black; border-top: solid black}
