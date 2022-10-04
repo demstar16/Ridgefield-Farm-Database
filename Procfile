@@ -1,1 +1,1 @@
-web: gunicorn ridgefield.ridgefield.wsgi
+web: gunicorn ridgefield.wsgi
