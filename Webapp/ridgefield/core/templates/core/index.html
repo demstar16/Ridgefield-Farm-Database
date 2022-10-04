@@ -6,40 +6,103 @@
 </form>
 
 {% block content %}
-<div class="container">
-  <div id="index-search" class="shadowed">
-  <form method="GET" action="{% url 'search' %}">
-  <div class="input-group mb-3">
-    <input type="text" class="form-control" name="q" placeholder="Search">
-    <div class="input-group-append">
-      <button class="btn btn-primary" type="submit">Go</button>
-    </div>
-  </div>
-  </form>
-  </div>
-</div>
-<div class="container">
-  <div class="card shadowed">
+<div class="container-fluid">
+  <div>
     <div id="map-container">
-      <h5>Select by Paddock</h5>
-      <h5>or 
-        <a href="{% url 'browse' %}">
-          <button class="btn btn-primary">Browse All</button>
-        </a>
-      </h5>
-        <div id="map-display"></div>
-      <h4>Select Paddock:</h4>
-      <span class="text1">
-        <ul style="columns: 3;
-      -webkit-columns: 3;
-      -moz-columns: 3; list-style-type: none;">
-      {% for paddock in paddocks %}
-      <li></li><a id="list1" href="{% url 'browse' paddock.id %}">{{paddock.name}}</a></li>
-      {% endfor %}</ul>
-      </span>
+      <div class="row card-body" style="padding: 10px 50px;">
+        <div class="col-sm-2" style="padding-right: 0px;">
+          <div class="card">
+            <div class="card-header">
+              <h5>Recently Updated Files</h5>
+            </div>
+            <div class="card-body" id="index-recent-column">
+              <table class="table table-bordered">
+                <tbody>
+                  {% for file in files %}
+                  <tr>
+                    <td><a href="{% url 'file' file.id %}" class="text-dark">{{file.name}}</a></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h5>My Uploaded Files</h5>
+            </div>
+            <div class="card-body" id="index-uploaded-column">
+              <table class="table">
+                <tbody>
+                  {% for upload in uploads %}
+                  <tr>
+                    <td><a href="{% url 'file' upload.id %}" class="text-dark">{{upload.name}}</a></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8" style="padding-left: 0px; padding-right: 0px;"><div id="map-display"></div></div>
+        <div class="col-sm-2" style="padding-left: 0px;">
+          <div class="card">
+            <div class="card-header">
+              <a href="{% url 'browse' %}">
+                <button class="btn btn-lg btn-primary">Browse All Files</button>
+              </a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h5>Select by Paddock</h5>
+              <input class="form-control" id="paddock-filter" type="text" placeholder="Filter...">
+            </div>
+            <div class="card-body" id="index-paddock-column">
+              <ul style="list-style-type: none;" id="paddock-list">
+                {% for paddock in paddocks %}
+                  <li><a href="{% url 'paddock' paddock.id %}" class="text-dark">
+                    {{paddock.name}}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h5>Select by Tag</h5>
+              <input class="form-control" id="tag-filter" type="text" placeholder="Filter...">
+            </div>
+            <div class="card-body" id="index-tag-column">
+              <ul style="list-style-type: none;" id="tag-list">
+                {% for tag in tags %}
+                  <li><a href="{% url 'tag' tag.id %}" class="text-dark">{{tag.name}}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
     </div>
   </div>
 </div>
 
+<script>
+  $(document).ready(function(){
+    $("#paddock-filter").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#paddock-list li").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+
+  $(document).ready(function(){
+    $("#tag-filter").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#tag-list li").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+</script>
 
 {% endblock %}

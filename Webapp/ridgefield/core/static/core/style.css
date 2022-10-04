@@ -8,14 +8,41 @@ body {
 }
 
 #map-display {
-    margin: 10px;
     background-image: url("map.png");
-    background-size: 100%;
-    height: 1070px;
+    background-size: cover;
+    padding-left: 0%;
+    margin-left: 0%;
+    height: 100%;
 }
 
 #map-container {
     text-align: center;
+    margin: 0px 60px;
+    height: 900px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+}
+
+#index-tag-column,
+#index-paddock-column {
+    height: 300px;
+    overflow-y: scroll; 
+    text-align: left;
+}
+
+#index-recent-column {
+    text-align: left;
+    overflow-x: scroll;
+    padding: 0px;
+    height:280px;
+}
+
+#index-uploaded-column {
+    text-align: left;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    padding: 0px;
+    height:470px;
 }
 
 .form-container {
