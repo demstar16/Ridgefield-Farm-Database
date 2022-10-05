@@ -92,6 +92,7 @@ body {
 #index-recent-column {
     text-align: left;
     overflow-x: scroll;
+    padding: 0px;
     height: 33vh;
 }
 
