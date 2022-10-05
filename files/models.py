@@ -24,7 +24,7 @@ class Tag(models.Model):
 
 class File(models.Model):
     name = models.CharField(max_length=50)
-    description = models.TextField(null=True, blank=True)
+    description = models.CharField(max_length=150, null=True, blank=True)
     uploader = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     tags = models.ManyToManyField(Tag, related_name='tags', blank=True)
     filedata = models.FileField(upload_to='files/')

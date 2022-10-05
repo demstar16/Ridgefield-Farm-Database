@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark shadowed" id="navbar">
   {% if request.user.is_authenticated %}
   <div class="navbar-collapse collapse w-50 order-1 order-md-0">
       <ul class="navbar-nav mr-auto">
@@ -33,9 +33,10 @@
               Admin
             </a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="/admin">Admin Portal</a>
+              <a class="dropdown-item" href="{% url 'audit_list' %}">Account Controls</a>
               <a class="dropdown-item" href="{% url 'recently_deleted' %}">Deleted Files</a>
-              <a class="dropdown-item" href="{% url 'audit_list' %}">Account Approvals</a>
+              <hr>
+              <a class="dropdown-item" href="/admin">Admin Portal</a>
             </div>
         </li>
         {% endif %}
@@ -49,15 +50,15 @@
       </ul>
   </div>
   {% else %}
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="https://www.uwa.edu.au/">UWA</a>
+  <ul class="navbar-nav mx-auto">
+    <li class="nav-item active">
+      <a class="nav-link" href="https://www.uwa.edu.au/institutes/institute-of-agriculture/">UWA Institute of Agriculture</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="https://www.uwa.edu.au/institutes/institute-of-agriculture/Home">Institute of Agriculture</a>
+      <a class="nav-link" href="https://www.uwa.edu.au/institutes/institute-of-agriculture/About-the-Institute-of-Agriculture">About</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="https://www.uwa.edu.au/institutes/institute-of-agriculture/UWA-Farm-Ridgefield">Farm Ridgefield</a>
+      <a class="nav-link" href="https://www.uwa.edu.au/institutes/institute-of-agriculture/News">News</a>
     </li>
   </ul>
   {% endif %}

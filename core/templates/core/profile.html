@@ -2,34 +2,45 @@
 
 {% block content %}
 
-<div class="container card shadowed" style="margin-top: 50px; text-align: center;">
-    <div>
-        <h1>Hi {{ user.username }}!</h1>
-    </div>
-    <div class="float">
-        <div class="userinfo1">
-            <h2 class="user-heading">Personal Details</h2>
-            <h4>Name</h4>
-            <p>{{ user.first_name }} {{ user.last_name }}</p>
-            <h4>Role</h4>
-            <p>{{ user.role.name }}</p>
-            <h4>Bio</h4>
-            <p>{{ user.bio }}</p>
-        </div>
-        <div class='userinfo2'>
-            <h2 class="user-heading">User Activity</h2>
-            <h4>Last Login</h4>
-            <p>Last Login: {{ user.last_login }}</p>
-            <h4>Recent Uploads</h4>
+<div class="page-container">
+    <div class="container-backdrop">
+      <div class="content-container">
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <h1>Hi {{ user.username }}!</h1>
+                </div>
+            </div>
+            <div class="card-body" style="overflow: auto;">
+                <div class="float">
+                    <div class="userinfo1">
+                        <h2 class="user-heading">Personal Details</h2>
+                        <h4>Name</h4>
+                        <p>{{ user.first_name }} {{ user.last_name }}</p>
+                        <h4>Role</h4>
+                        <p>{{ user.role.name }}</p>
+                        <h4>Bio</h4>
+                        <p>{{ user.bio }}</p>
+                    </div>
+                    <div class='userinfo2'>
+                        <h2 class="user-heading">User Activity</h2>
+                        <h4>Last Login</h4>
+                        <p>Last Login: {{ user.last_login }}</p>
+                        <h4>Recent Uploads</h4>
+                        
+                            {% for upload in uploads %}
+                                <ul>
+                                    <li><a href="{% url 'file' upload.id %}" class="text-dark">{{upload.name}}</a></li>
+                                </ul>
+                            {% endfor %}
             
-                {% for upload in uploads %}
-                    <ul>
-                        <li><a href="{% url 'file' upload.id %}" class="text-dark">{{upload.name}}</a></li>
-                    </ul>
-                {% endfor %}
-
+                    </div>
+                </div>
+            </div>
         </div>
+      </div>
     </div>
 </div>
+
 
 {% endblock content %}

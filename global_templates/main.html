@@ -22,11 +22,37 @@
 </head>
 
 <body>
+    <div id="header">
+      <div id="header-logo">
+        <a href="https://www.uwa.edu.au/">
+          <img src="{% static 'core/UWA-logo.svg' %}" alt="UWA Logo" style="height: 45px;">
+        </a>
+      </div>
+      <div id="header-title">
+        <a id="header-text" href="{% url 'index' %}">FARM RIDGEFIELD DATABASE</a>
+      </div>
+    </div>
     {% include 'navbar.html' %}
 
     {% block content %} 
 
     {% endblock %}
+
+    <div class="footer">
+      <nav class="navbar navbar-expand-sm navbar-dark" id="footer-bar">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="https://www.uwa.edu.au/">University of Western Australia</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="https://www.uwa.edu.au/institutes/institute-of-agriculture/Home">UWA Institute of Agriculture</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="https://www.uwa.edu.au/institutes/institute-of-agriculture/UWA-Farm-Ridgefield">Farm Ridgefield</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
 </body>
 
 </html>
