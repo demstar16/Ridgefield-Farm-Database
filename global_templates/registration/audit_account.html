@@ -1,38 +1,62 @@
 {% extends 'main.html' %}
-
+{% load static %}
 {% block content %}
+
+<script>
+  $(document).ready(function () {
+  $('#accountsTable').DataTable();
+  $('.dataTables_length').addClass('bs-select');
+  });
+</script>
+
 <div class="page-container">
   <div class="container-backdrop">
     <div class="content-container">
       <div class="card">
-          <div class="card-header"><h3>Accounts</h3></div>
+          <div class="card-header" style="text-align:center;"><h3>Accounts</h3></div>
           <div class="card-body" style="overflow: auto;">
-            <table id="example1" class="table table-bordered table-striped">
-              <thead>
-              <tr>
-                <th>id</th>
-                <th>username</th>
-                <th>email</th>
-                <th>role</th>
-                <th>state</th>
-                <th>examine</th>
-              </tr>
+            <table id="accountsTable" class="table table-hover table-sm" cellspacing="0" width="100%">
+              <thead class="bg-dark text-white">
+                <tr>
+                  <th class="th-md">Email</th>
+                  <th class="th-md">Username</th>
+                  <th class="th-md">Name</th>
+                  <th class="th-md">Role</th>
+                  <th class="th-md">Registration Date</th>
+                  <th class="th-md">Access Status</th>
+                  <th class="th-md">Action</th>
+                </tr>
               </thead>
               <tbody>
-              {% for user in users %}
+                {% for user in users %}
                 <tr>
-                  <td>{{ user.id }}</td>
-                  <td>{{ user.username }}</td>
                   <td>{{ user.email }}</td>
-                  <td>{{ user.role }}</td>
-                  <td>{% if user.is_active == 0 %}frozen{% elif user.is_active == 1 %}active{% else %}
-                    close{% endif %}</td>
+                  <td><a href="{% url 'profile' user.id %}">{{ user.username }}</a></td>
+                  <td><span class="font-weight-bold">{{ user.first_name }} {{ user.last_name }}</span></td>
+                  <td><span class="badge badge-primary">{{ user.role }}</span></td>
+                  <td>{{ user.create_time }}</td>
+                  <td>
+                    {% if user.is_active == 0 %}
+                      <div class="alert alert-danger"><strong>Inactive</strong></div>
+                    {% elif user.is_active == 1 %}
+                      <div class="alert alert-success"><strong>Active</strong></div>
+                    {% else %}
+                    {% endif %}
+                  </td>
                   <td class="text-center">
-                    <a href="{% url 'audit_activate' user.id %}" class="btn bg-olive btn-xs">approved</a>
-                    <a href="{% url 'audit_freeze' user.id %}" class="btn bg-olive btn-xs">refuse</a>
+                    {% if user.is_active == 0 %}
+                      <a href="{% url 'audit_activate' user.id %}">
+                        <button type="button" class="btn btn-dark">Activate</button>
+                      </a>
+                    {% elif user.is_active == 1 %}
+                      <a href="{% url 'audit_freeze' user.id %}">
+                        <button type="button" class="btn btn-danger">Deactivate</button>
+                      </a>
+                    {% else %}
+                    {% endif %}
                   </td>
                 </tr>
-              {% endfor %}
+                {% endfor %}
               </tbody>
             </table>
           </div>

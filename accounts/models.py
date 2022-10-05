@@ -23,9 +23,11 @@ class User(AbstractUser):
 
     def to_dict(self):
         return {
-            'id': self.id,
-            'username': self.username,
             'email': self.email,
+            'username': self.username,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
             'role': self.role,
+            'create_time': self.create_time,
             'is_active': self.is_active
         }

@@ -41,6 +41,14 @@
                                           <td>{{file.description}}</td>
                                       </tr>
                                       <tr>
+                                        <th>Year</th>
+                                        <td>
+                                            <a href="{% url 'year' file.year %}" data-toggle="tooltip" title="View all files from same year" data-placement="bottom">
+                                                <span class="text-weight-bold">{{file.year}}</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                      <tr>
                                           <th>Tags</th>
                                           <td>
                                               <h5>

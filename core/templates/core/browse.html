@@ -40,7 +40,7 @@
                           {% endfor %}
                         </h5>
                       </td>
-                      <td>{{file.created|date:'Y'}}</td>
+                      <td>{{file.year}}</td>
                       <td>{{file.filedata.file.size}} Bytes</td>
                       <td>
                         {% for tag in file.tags.all %}
