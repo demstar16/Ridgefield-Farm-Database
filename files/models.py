@@ -1,6 +1,7 @@
 from django.db import models
 from accounts.models import User
-
+import datetime
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 class Paddock(models.Model):
@@ -21,6 +22,8 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+def current_year():
+    return datetime.date.today().year
 
 class File(models.Model):
     name = models.CharField(max_length=50)
@@ -29,6 +32,8 @@ class File(models.Model):
     tags = models.ManyToManyField(Tag, related_name='tags', blank=True)
     filedata = models.FileField(upload_to='files/')
     paddocks = models.ManyToManyField(Paddock, related_name='paddocks', blank=True)
+    year = models.PositiveIntegerField(
+        default= current_year(), validators=[MinValueValidator(2007), MaxValueValidator(current_year())])
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     deleted = models.IntegerField(default=0)

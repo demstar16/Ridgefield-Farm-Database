@@ -8,5 +8,7 @@ urlpatterns = [
     path('browse/', views.browse, name="browse"),
     path('paddock/<str:pk>/', views.byPaddock, name="paddock"),
     path('tag/<str:pk>/', views.byTag, name="tag"),
+    path('year/<int:pk>/', views.byYear, name="year"),
     path('recently_deleted/', views.viewRecentlyDeleted, name="recently_deleted"),
+    path('error/', views.errorPage, name="error"),
 ]
