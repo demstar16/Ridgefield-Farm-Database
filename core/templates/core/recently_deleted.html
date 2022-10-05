@@ -2,65 +2,64 @@
 
 {% block content %}
 
-<div class="container card" style="margin-top: 50px;">
-    <h2 style="text-align: center; color: crimson;">
-      <strong>
-        Recently Deleted
-      </strong>
-    </h2>
-    <h5 style="text-align: center;">
-      <a style="color: forestgreen" href = "{% url 'cleanDatabase' %}">
-        Clean Database 
-      </a>
-    </h5>
-    <h6 style="text-align: center;"> 
-      <a href="{% url 'browse' %}">
-        Go Back
-      </a> 
-    </h6>
-    <input class="form-control" id="myInput" type="text" placeholder="Search..">         
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Filename</th>
-          <th>Restore</th>
-          <th>Uploaded</th>
-          <th>Permanently Delete</th>
-          
-        </tr>
-      </thead>
-      <tbody id="myTable">
-        {% for file in files %}
-          <tr>
-              <td><a href="{% url 'file' file.id %}">{{file.name}}</a></td>
-              <td>
-                <a href="{% url 'fileRestore' file.id %}">
-                  <button type="button" class="btn btn-secondary">
-                    Restore
-                  </button>
-                </a>
-              </td>
-              <td>{{file.updated}}</td>
-              <td>
-
-                <a href="{% url 'delete_confirm' file.id %}">
-                  <button type="button" class="btn btn-danger">
-                    Delete
-                  </button>
-                </a>
-              </td>
-              
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <h5 style="text-align: center;">
-      <a style="color: crimson" href = "{% url 'deleteAllConfirm' %}">
-        <button type="button" style="width:100%" class="btn btn-danger">
-          Delete All
-        </button>
-      </a>
-    </h5>
+<div class="page-container">
+  <div class="container-backdrop">
+    <div class="content-container">
+      <div class="card">
+        <div class="card-header">
+          <h2 style="text-align: center; color: crimson;">
+            <strong>Deleted Files</strong>
+          </h2>
+        </div>
+        <div class="card-body" style="overflow: auto;">
+          <!-- <h5 style="text-align: center;">
+            <a style="color: forestgreen" href = "{% url 'cleanDatabase' %}">
+              Clean Database 
+            </a>
+          </h5> -->
+          <input class="form-control" id="myInput" type="text" placeholder="Search..">         
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Filename</th>
+                  <th>Uploaded</th>
+                  <th>Deleted</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="myTable">
+                {% for file in files %}
+                  <tr>
+                      <td><a href="{% url 'file' file.id %}">{{file.name}}</a></td>
+                      <td>{{file.created}}</td>
+                      <td>{{file.updated}}</td>
+                      <td>
+                        <a href="{% url 'fileRestore' file.id %}">
+                          <button type="button" class="btn btn-dark">
+                            Restore
+                          </button>
+                        </a>
+                        <a href="{% url 'delete_confirm' file.id %}">
+                          <button type="button" class="btn btn-danger">
+                            Delete
+                          </button>
+                        </a>
+                      </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <h5 style="text-align: center;">
+              <a style="color: crimson" href = "{% url 'deleteAllConfirm' %}">
+                <button type="button" style="width:100%" class="btn btn-danger">
+                  Delete All
+                </button>
+              </a>
+            </h5>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>

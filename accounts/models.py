@@ -18,7 +18,8 @@ class User(AbstractUser):
     is_active = models.BooleanField(default=False)
     create_time = models.DateTimeField(auto_now_add=True,null=True, blank=True, verbose_name='Registration time')
 
-    REQUIRED_FIELDS = ['email']
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
 
     def to_dict(self):
         return {

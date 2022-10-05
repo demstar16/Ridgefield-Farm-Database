@@ -6,12 +6,12 @@
 </form>
 
 {% block content %}
-<div class="container-fluid">
-  <div>
-    <div id="map-container">
-      <div class="row card-body" style="padding: 10px 50px;">
-        <div class="col-sm-2" style="padding-right: 0px;">
-          <div class="card">
+<div class="page-container">
+  <div class="container-backdrop">
+    <div class="map-container">
+      <div class="row">
+        <div class="col-sm-2" id="index-left-col" style="padding-right: 0px;">
+          <div class="card" style="overflow: auto;">
             <div class="card-header">
               <h5>Recently Updated Files</h5>
             </div>
@@ -44,15 +44,14 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-8" style="padding-left: 0px; padding-right: 0px;"><div id="map-display"></div></div>
-        <div class="col-sm-2" style="padding-left: 0px;">
-          <div class="card">
-            <div class="card-header">
-              <a href="{% url 'browse' %}">
-                <button class="btn btn-lg btn-primary">Browse All Files</button>
-              </a>
-            </div>
+        <div class="col-sm-8" id="index-middle-col" style="padding-left: 0px; padding-right: 0px;">
+          <div id="map-display">
+            <a href="{% url 'browse' %}">
+              <button class="btn btn-lg btn-primary shadowed" style="z-index: 0;">Browse All Files</button>
+            </a>
           </div>
+        </div>
+        <div class="col-sm-2" id="index-right-col" style="padding-left: 0px;">
           <div class="card">
             <div class="card-header">
               <h5>Select by Paddock</h5>
@@ -82,6 +81,19 @@
           </div>
         </div>
     </div>
+  </div>
+</div>
+
+<div class="page-container">
+  <div id="map-container">
+    
+  </div>
+</div>
+
+
+<div class="container-fluid">
+  <div>
+    
   </div>
 </div>
 

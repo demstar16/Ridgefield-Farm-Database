@@ -1,52 +1,60 @@
+:root {
+    --navbar: rgba(0, 0, 0, 0.82);
+}
+
 body {
     background-image: url("background.jpg");
     background-size: cover;
 }
 
-#index-search {
-    margin: 100px 40px;
+/* Header */
+#header {
+    overflow: auto;
+    background-image: linear-gradient(to right, rgb(13, 19, 37) , rgb(35, 57, 131));
+}
+#header-logo {
+    background-color: white;
+    padding: 5px 20px;
+    float: left;
+}
+#header-title {
+    float: left;
+    padding: 10px 20px;
+}
+#header-text {
+    color: white;
+    font-size: 23px;
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+#navbar {
+    background-color: var(--navbar);
 }
 
-#map-display {
-    background-image: url("map.png");
-    background-size: cover;
-    padding-left: 0%;
-    margin-left: 0%;
-    height: 100%;
+.footer {
+    width: 100%;
+    padding-top: 10px;
+    background: var(--navbar);
 }
 
-#map-container {
-    text-align: center;
-    margin: 0px 60px;
-    height: 900px;
+#footer-bar {
+    background-color: rgb(13, 19, 37);
+}
+
+.content-container {
+    padding: 10px 100px;
+}
+
+.container-backdrop {
     background-color: rgba(0, 0, 0, 0.4);
-    border-radius: 8px;
-}
-
-#index-tag-column,
-#index-paddock-column {
-    height: 300px;
-    overflow-y: scroll; 
-    text-align: left;
-}
-
-#index-recent-column {
-    text-align: left;
-    overflow-x: scroll;
-    padding: 0px;
-    height:280px;
-}
-
-#index-uploaded-column {
-    text-align: left;
-    overflow-x: scroll;
-    overflow-y: scroll;
-    padding: 0px;
-    height:470px;
+    min-height: calc(100vh - 177px);
+    margin: 0px 60px;
+    padding-top: 10px;
+    padding-bottom: 20px;
 }
 
 .form-container {
-    margin: 50px 250px;
+    margin: 10px 250px;
 }
 
 .form-content {
@@ -54,17 +62,59 @@ body {
     margin: 50px;
 }
 
+.content-container {
+    margin: 0px 120px;
+}
+
+#map-display {
+    background-image: url("map.png");
+    background-size: cover;
+    padding-left: 0%;
+    margin-left: 0%;
+    height: 86vh;
+    padding-top: 20px;
+}
+
+.map-container {
+    text-align: center;
+    margin: 0px 12vh;
+    height: 86vh;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#index-tag-column,
+#index-paddock-column {
+    overflow-y: scroll; 
+    text-align: left;
+    height: 33vh;
+}
+
+#index-recent-column {
+    text-align: left;
+    overflow-x: scroll;
+    padding: 0px;
+    height: 33vh;
+}
+
+#index-uploaded-column {
+    text-align: left;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    padding: 0px;
+    height: 40vh;
+}
+
 .shadowed {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6)
 }
 
 #list1 {font-size:20px; color:black; border-radius: 10%;}
 
-.red {background-color: red;}
+.red {background-color: rgb(143, 69, 69);}
 
 .grey {background-color: grey;}
 
-.sort:hover {cursor: pointer; background-color: lightpink;}
+.sort:hover {cursor: pointer; background-color: rgb(201, 125, 136);}
 
 td, th, tr {text-align: center;}
 

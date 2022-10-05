@@ -1,28 +1,35 @@
 {% extends "main.html" %}
 
 {% block content %}
-<div class="container">
-  <div class="card form-container shadowed">
-    <div class="form-content">
-      <h3>Upload a File
-        <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#newTag">
-          + New Tag
-        </button> 
-      </h3>
-      <div>
-        <div class="alert alert-primary">
-          Hold down <kbd>ctrl</kbd> to select multiple choices
-        </div>
-        <form method="post" enctype="multipart/form-data">
-          {% csrf_token %}
-          {{ form.as_p }}
-          <button type="submit" class="btn btn-primary">Upload</button>
-          <input type="hidden" name="next" value="{{ request.path }}">
-        </form>
-      </div>
-      <hr>
-      <div>
-        <p><a href="{% url 'index' %}">Return to index</a></p>
+
+<div class="page-container">
+  <div class="container-backdrop">
+    <div class="container" style="text-align: center;">
+      <div class="card form-container">
+          <div class="card-header">
+            <h3>Upload a File
+              <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#newTag">
+                + New Tag
+              </button> 
+            </h3>
+          </div>
+          <div class="card-body" style="overflow: auto;">
+            <div>
+              <div class="alert alert-primary">
+                Hold down <kbd>ctrl</kbd> to select multiple choices
+              </div>
+              <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Upload</button>
+                <input type="hidden" name="next" value="{{ request.path }}">
+              </form>
+            </div>
+            <hr>
+            <div>
+              <p><a href="{% url 'index' %}">Return to index</a></p>
+            </div>
+          </div>
       </div>
     </div>
   </div>
