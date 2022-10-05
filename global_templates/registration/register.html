@@ -1,21 +1,25 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<div class="container">
-  <div class="card form-container shadowed">
-    <div class="form-content">
-      <h3>Request Access</h3>
-      <div>
-        <form method="post">
-          {% csrf_token %}
-          {{ form.as_p }}
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-      </div>
-      <hr>
-      <div>
-        <p>Already have an account?</p>
-        <a href="{% url 'login' %}">Log In</a>
+<div class="page-container">
+  <div class="container-backdrop">
+    <div class="container" style="text-align: center;">
+      <div class="card form-container">
+        <div class="card-header"><h3>Request Access</h3></div>
+        <div class="card-body" style="overflow: auto;">
+          <div>
+            <form method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+          <hr>
+          <div>
+            <p>Already have an account?</p>
+            <a href="{% url 'login' %}">Log In</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
