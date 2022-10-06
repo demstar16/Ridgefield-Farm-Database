@@ -48,8 +48,14 @@ def byTag(request, pk):
     tag = Tag.objects.get(id=pk)
     files = File.objects.filter(tags=pk)
     heading = "Tag: "
-    showpaddock = True
     context = {'files': files, 'heading': heading, 'heading_param': tag}
+    return render(request, 'core/browse.html', context)
+
+@login_required(login_url='accounts/login')
+def byYear(request, pk):
+    files = File.objects.filter(year=pk)
+    heading = "Year: "
+    context = {'files': files, 'heading': heading, 'heading_param': pk}
     return render(request, 'core/browse.html', context)
 
 
@@ -58,4 +64,8 @@ def viewRecentlyDeleted(request):
     files = File.objects.all().filter(deleted=1)
     context = {'files': files}
     return render(request, 'core/recently_deleted.html', context)
+
+def errorPage(request):
+    context = {}
+    return render(request, 'core/error.html', context)
 
