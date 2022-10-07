@@ -4,8 +4,10 @@
 
 <script>
   $(document).ready(function () {
-  $('#accountsTable').DataTable();
-  $('.dataTables_length').addClass('bs-select');
+    $('#accountsTable').DataTable({
+      "order": [[ 3, "desc" ]]
+    });
+      $('.dataTables_length').addClass('bs-select');
   });
 </script>
 
@@ -15,11 +17,10 @@
       <div class="card">
           <div class="card-header" style="text-align:center;"><h3>Accounts</h3></div>
           <div class="card-body" style="overflow: auto;">
-            <table id="accountsTable" class="table table-hover table-sm" cellspacing="0" width="100%">
+            <table id="accountsTable" class="table table-hover border" cellspacing="0" width="100%">
               <thead class="bg-dark text-white">
                 <tr>
-                  <th class="th-md">Email</th>
-                  <th class="th-md">Username</th>
+                  <th class="th-md">User</th>
                   <th class="th-md">Name</th>
                   <th class="th-md">Role</th>
                   <th class="th-md">Registration Date</th>
@@ -30,27 +31,32 @@
               <tbody>
                 {% for user in users %}
                 <tr>
-                  <td>{{ user.email }}</td>
-                  <td><a href="{% url 'profile' user.id %}">{{ user.username }}</a></td>
+                  <td><a href="{% url 'profile' user.id %}">{{ user.email }}</a></td>
                   <td><span class="font-weight-bold">{{ user.first_name }} {{ user.last_name }}</span></td>
                   <td><span class="badge badge-primary">{{ user.role }}</span></td>
                   <td>{{ user.create_time }}</td>
                   <td>
                     {% if user.is_active == 0 %}
-                      <div class="alert alert-danger"><strong>Inactive</strong></div>
+                      <div class="alert alert-danger" style="padding: 6px; margin-bottom: 0px;"><strong>Inactive</strong></div>
+                    {% elif user.is_staff == True %}
+                      <div class="alert alert-primary" style="padding: 6px; margin-bottom: 0px;"><strong>Admin</strong></div>
                     {% elif user.is_active == 1 %}
-                      <div class="alert alert-success"><strong>Active</strong></div>
+                      <div class="alert alert-success" style="padding: 6px; margin-bottom: 0px;"><strong>Active</strong></div>
                     {% else %}
                     {% endif %}
                   </td>
                   <td class="text-center">
-                    {% if user.is_active == 0 %}
+                    {% if user.is_staff == True %}
+                    {% elif user.is_active == 0 %}
                       <a href="{% url 'audit_activate' user.id %}">
                         <button type="button" class="btn btn-dark">Activate</button>
                       </a>
+                      <a href="{% url 'confirm_deletion' user.id %}">
+                        <button type="button" class="btn btn-danger">Remove</button>
+                      </a>
                     {% elif user.is_active == 1 %}
                       <a href="{% url 'audit_freeze' user.id %}">
-                        <button type="button" class="btn btn-danger">Deactivate</button>
+                        <button type="button" class="btn btn-dark">Deactivate</button>
                       </a>
                     {% else %}
                     {% endif %}

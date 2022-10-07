@@ -9,6 +9,9 @@ urlpatterns = [
     path('audit_list/', views.audit_list, name='audit_list'),
     path('audit_activate/<str:pk>/', views.audit_activate, name='audit_activate'),
     path('audit_freeze/<str:pk>/', views.audit_freeze, name='audit_freeze'),
+    path('confirm_deletion/<str:pk>/', views.confirm_deletion, name='confirm_deletion'),
+    path('delete/<str:pk>/', views.delete_account, name='delete_account'),
+
     
     #To enable to send a email from host email, you need to go to 
     #bottom of setting.py to change SMTP config 

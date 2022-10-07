@@ -6,6 +6,7 @@ from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
 from .models import File, Tag, Paddock, PastFile
 from core.views import browse
+from django.contrib.admin.views.decorators import staff_member_required
 
 
 # Create your views here.
@@ -47,13 +48,13 @@ def viewFile(request, pk):
     context = {'file': file_info, 'past_versions':file_info.past_versions, 'form': form}
     return render(request, 'file.html', context)
 
-@login_required(login_url='accounts/login')
+@staff_member_required
 def delete_confirm(request, pk):
     file_info = File.objects.get(id=pk)
     context =  {'file': file_info}
     return render(request, "delete.html", context)
 
-@login_required(login_url='accounts/login')
+@staff_member_required
 def deleteAllConfirm(request):
     
     return render(request, "delete_all.html")
@@ -66,32 +67,32 @@ def file_delete(request, pk):
         file.save()
     return redirect('browse')
 
-@login_required(login_url='accounts/login')
+@staff_member_required
 def fileRestore(request, pk):
     file = File.objects.get(id=pk)
     file.deleted = 0
     file.save()
-    return redirect('browse')
+    return redirect('recently_deleted')
 
-@login_required(login_url='accounts/login')
+@staff_member_required
 def permanentDelete(request, pk):
     file = File.objects.get(id=pk)
     file.delete()
     management.call_command('cleanup_unused_media', interactive=False)
-    return redirect('browse')
+    return redirect('recently_deleted')
 
-@login_required(login_url='accounts/login')
+@staff_member_required
 def cleanDatabase(request):
     management.call_command('cleanup_unused_media', interactive=False)
-    return redirect('browse')
+    return redirect('recently_deleted')
 
-@login_required(login_url='accounts/login')
+@staff_member_required
 def permenantDeleteAll(request):
     files = File.objects.all().filter(deleted=1)
     for file in files:
         file.delete()
     management.call_command('cleanup_unused_media', interactive=False)
-    return redirect('browse')
+    return redirect('recently_deleted')
 
 @login_required(login_url='accounts/login')
 def edit(request, pk):
