@@ -29,11 +29,17 @@
                         <h4>Recent Uploads</h4>
                         
                             {% for upload in uploads %}
-                                <ul>
-                                    <li><a href="{% url 'file' upload.id %}" class="text-dark">{{upload.name}}</a></li>
-                                </ul>
+                            <a href="{% url 'file' upload.id %}" class="text-dark">{{upload.name}}</a>
+                            {% empty %}
+                            <p>No files uploaded recently.</p>
                             {% endfor %}
-            
+                        
+                        <h4>Update User Bio</h4>
+                        <form>
+                            <textarea id="bioupdate" name="bioupdate" rows="4" cols="50"></textarea>
+                            <br>
+                            <input type="submit" value="Submit">
+                          </form>
                     </div>
                 </div>
             </div>
