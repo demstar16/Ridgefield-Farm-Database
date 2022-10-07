@@ -162,3 +162,5 @@ td, th, tr {text-align: center;}
 .userinfo2 {background: rgb(186, 244, 186); flex-basis: 50%; margin: 10px;}
 
 .user-heading {background-color: rgb(186, 244, 186); border-bottom: solid black; border-top: solid black}
+
+.light-grey {background-color: rgb(230, 227, 227);}
