@@ -62,7 +62,7 @@ def deleteAllConfirm(request):
 @login_required(login_url='accounts/login')
 def file_delete(request, pk):
     file = File.objects.get(id=pk)
-    if request.user.id == file.uploader.id:
+    if request.user.id == file.uploader.id or request.user.is_staff:
         file.deleted = 1
         file.save()
     return redirect('browse')

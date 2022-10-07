@@ -24,13 +24,17 @@
                         </h2>
                     </div>
                     <div class="card-body" style="overflow: auto;">
-                      {% if request.user.is_staff == True %}
+                      {% if request.user.is_staff == True and request.user != file.uploader %}
                         <div class="alert alert-info">
-                            <h5>Admin Options</h5>
+                            <h5>[Admin Options]</h5>
                             {% if file.deleted == 0 %}
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
                                     Delete
                                 </button>
+                            {% else %}
+                                <a href="{% url 'fileRestore' file.id %}">
+                                    <button type="button" class="btn btn-primary">Restore</button>
+                                </a>
                             {% endif %}
                         </div>
                       {% endif %}
