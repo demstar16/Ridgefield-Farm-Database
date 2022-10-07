@@ -66,15 +66,6 @@ body {
     margin: 0px 40px;
 }
 
-#map-display {
-    background-image: url("map.png");
-    background-size: cover;
-    padding-left: 0%;
-    margin-left: 0%;
-    height: 86vh;
-    padding-top: 20px;
-}
-
 .map-container {
     text-align: center;
     margin: 0px 12vh;
@@ -82,27 +73,145 @@ body {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-#index-tag-column,
-#index-paddock-column {
+@media screen and (max-width: 2000px) {
+    #map-display {
+        background-image: url("map.png");
+        background-size: cover;
+        padding-left: 0%;
+        margin-left: 0%;
+        height: 88.5vh;
+        padding-top: 20px;}
+
+    #index-tag-column, #index-paddock-column {
     overflow-y: scroll; 
     text-align: left;
-    height: 33vh;
-}
+    height: 33vh;}
 
 #index-recent-column {
     text-align: left;
     overflow-x: scroll;
     padding: 0px;
-    height: 33vh;
-}
+    height: 33vh;}
 
 #index-uploaded-column {
     text-align: left;
     overflow-x: scroll;
     overflow-y: scroll;
     padding: 0px;
-    height: 40vh;
+    height: 40vh;}
 }
+
+@media only screen and (min-width: 2000px) and (max-width: 3000px) {
+    #map-display {
+    background-image: url("map.png");
+    background-size: cover;
+    padding-left: 0%;
+    margin-left: 0%;
+    height: 91vh;
+    padding-top: 20px;}
+
+    #index-tag-column, #index-paddock-column {
+    overflow-y: scroll; 
+    text-align: left;
+    height: 36vh;}
+
+#index-recent-column {
+    text-align: left;
+    overflow-x: scroll;
+    padding: 0px;
+    height: 38.5vh;}
+
+#index-uploaded-column {
+    text-align: left;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    padding: 0px;
+    height: 39.5vh;}
+}
+
+@media only screen and (min-width: 3000px) and (max-width: 4000px) {
+    #map-display {
+    background-image: url("map.png");
+    background-size: cover;
+    padding-left: 0%;
+    margin-left: 0%;
+    height: 88vh;
+    padding-top: 20px;}
+
+    #index-tag-column, #index-paddock-column {
+    overflow-y: scroll; 
+    text-align: left;
+    height: 37.5vh;}
+
+#index-recent-column {
+    text-align: left;
+    overflow-x: scroll;
+    padding: 0px;
+    height: 44vh;}
+
+#index-uploaded-column {
+    text-align: left;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    padding: 0px;
+    height: 36vh;}
+}
+
+@media only screen and (min-width: 4000px) and (max-width: 10000px) {
+#map-display {
+    background-image: url("map.png");
+    background-size: cover;
+    padding-left: 0%;
+    margin-left: 0%;
+    height: 91.5vh;
+    padding-top: 20px;}
+
+#index-tag-column, #index-paddock-column {
+    overflow-y: scroll; 
+    text-align: left;
+    height: 41.2vh;}
+
+#index-recent-column {
+    text-align: left;
+    overflow-x: scroll;
+    padding: 0px;
+    height: 44vh;}
+
+#index-uploaded-column {
+    text-align: left;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    padding: 0px;
+    height: 42vh;}
+}
+
+/* @media only screen and (min-width: 5000px) and (max-width: 50000px) {
+    #map-display {
+        background-image: url("map.png");
+        background-size: cover;
+        padding-left: 0%;
+        margin-left: 0%;
+        height: 91.5vh;
+        padding-top: 20px;}
+    
+    #index-tag-column, #index-paddock-column {
+        overflow-y: scroll; 
+        text-align: left;
+        height: 41.2vh;}
+    
+    #index-recent-column {
+        text-align: left;
+        overflow-x: scroll;
+        padding: 0px;
+        height: 44vh;}
+    
+    #index-uploaded-column {
+        text-align: left;
+        overflow-x: scroll;
+        overflow-y: scroll;
+        padding: 0px;
+        height: 42vh;}
+    } */
 
 .shadowed {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6)
