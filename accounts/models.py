@@ -31,3 +31,6 @@ class User(AbstractUser):
             'create_time': self.create_time,
             'is_active': self.is_active
         }
+
+    class Meta:
+        ordering = ['create_time']

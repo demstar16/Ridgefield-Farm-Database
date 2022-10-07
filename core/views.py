@@ -9,8 +9,8 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     paddocks = Paddock.objects.all()
     tags = Tag.objects.all()
-    files = File.objects.all()[0:5]
-    uploads = File.objects.filter(uploader=request.user)
+    files = File.objects.all().filter(deleted=0)[0:5]
+    uploads = File.objects.filter(uploader=request.user, deleted=0)
     context = {'paddocks': paddocks, 'tags': tags, 'files': files, 'uploads': uploads}
     return render(request, 'core/index.html', context)
 
@@ -38,7 +38,7 @@ def browse(request):
 @login_required(login_url='accounts/login')
 def byPaddock(request, pk):
     paddock = Paddock.objects.get(id=pk)
-    files = File.objects.filter(paddocks=pk)
+    files = File.objects.filter(paddocks=pk, deleted=0)
     heading = "Paddock: "
     context = {'files': files, 'heading': heading, 'heading_param': paddock}
     return render(request, 'core/browse.html', context)
@@ -46,14 +46,14 @@ def byPaddock(request, pk):
 @login_required(login_url='accounts/login')
 def byTag(request, pk):
     tag = Tag.objects.get(id=pk)
-    files = File.objects.filter(tags=pk)
+    files = File.objects.filter(tags=pk, deleted=0)
     heading = "Tag: "
     context = {'files': files, 'heading': heading, 'heading_param': tag}
     return render(request, 'core/browse.html', context)
 
 @login_required(login_url='accounts/login')
 def byYear(request, pk):
-    files = File.objects.filter(year=pk)
+    files = File.objects.filter(year=pk, deleted=0)
     heading = "Year: "
     context = {'files': files, 'heading': heading, 'heading_param': pk}
     return render(request, 'core/browse.html', context)

@@ -7,16 +7,16 @@
       <div class="card form-container">
         <div class="card-header"><h3>Confirm Deletion</h3></div>
         <div class="card-body" style="overflow: auto;">
-          <form method="POST" action="">
-            {% csrf_token %}
-            <p>Are you sure you want to permanently delete the file: "{{ file.name }}"?</p>
-
-            <a href="{% url 'permanentDelete' file.id %}">
+          <p><span class="font-weight-bold">Name:</span> {{user.first_name}} {{user.last_name}}</p>
+          <p><span class="font-weight-bold">Email:</span> {{user.email}}</p>
+          <p><span class="font-weight-bold">Role:</span> {{user.role.name}}</p>
+          <hr><h6 class="text-danger">Are you sure you want to permanently delete this account?</h6><hr>
+            <a href="{% url 'delete_account' user.id %}">
               <button type="button" class="btn btn-danger">
                 Delete
               </button>
             </a>
-            <a href="{% url 'recently_deleted' %}">
+            <a href="{% url 'audit_list' %}">
               <button type="button" class="btn btn-secondary">
                 Cancel
               </button>
