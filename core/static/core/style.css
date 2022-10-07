@@ -108,6 +108,41 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6)
 }
 
+.th-grey {
+    background-color: rgb(211, 211, 211);
+}
+
+.filterbar {
+    width: 30%;
+    float: right;
+}
+
+
+#accountsTable_filter {
+    float: right;
+}
+
+#fileTable_info,
+#accountsTable_info,
+#fileTable_length,
+#accountsTable_length {
+    float: left;
+    color: darkslategrey;
+}
+
+#fileTable_paginate,
+#accountsTable_paginate {
+    text-decoration: none;
+    text-align: center;
+    float: right;
+}
+
+.current,
+.previous,
+.next {
+    font-weight: bolder;
+}
+
 #list1 {font-size:20px; color:black; border-radius: 10%;}
 
 .red {background-color: rgb(143, 69, 69);}

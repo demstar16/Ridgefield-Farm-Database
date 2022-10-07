@@ -1,11 +1,15 @@
+{% extends "main.html" %}
+
 {% block content %}
 <div class="page-container">
   <div class="container-backdrop">
     <div class="container" style="text-align: center;">
       <div class="card form-container">
-        <div class="card-header"><h3>Error</h3></div>
+        <div class="card-header"><h2 class="text-danger">ERROR!</h2></div>
         <div class="card-body" style="overflow: auto;">
-          <p>Oops something went wrong. Sorry.</p>
+          <i class="material-icons" style="font-size:150px; color: grey">sentiment_dissatisfied</i>
+          
+          <h6>Sorry, something appears to have gone wrong...</h6>
           <hr>
           <a href="{% url 'index' %}">Return to Index Page</a>
         </div>
