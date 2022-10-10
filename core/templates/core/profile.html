@@ -19,11 +19,6 @@
                         <p>{{ user.first_name }} {{ user.last_name }}</p>
                         <h4>Role</h4>
                         <p>{{ user.role.name }}</p>
-                        <h4>Bio</h4>
-                        <p>{{ user.bio }}</p>
-                    </div>
-                    <div class='userinfo2'>
-                        <h2 class="user-heading">User Activity</h2>
                         <h4>Last Login</h4>
                         <p>Last Login: {{ user.last_login }}</p>
                         <h4>Recent Uploads</h4>
@@ -33,10 +28,17 @@
                             {% empty %}
                             <p>No files uploaded recently.</p>
                             {% endfor %}
+
+    
+                    </div>
+                    <div class='userinfo2'>
+                        <h2 class="user-heading">User Bio</h2>
+                        <h4>Bio</h4>
+                        <p class="userbio">{{ user.bio }}</p>
                         
                         <h4>Update User Bio</h4>
-                        <form>
-                            <textarea id="bioupdate" name="bioupdate" rows="4" cols="50"></textarea>
+                        <form onsubmit="showbio()">
+                            <textarea id="bioupdate" name="bioupdate" rows="4" cols="50">{{ user.bio }}</textarea>
                             <br>
                             <input type="submit" value="Submit">
                           </form>
@@ -48,5 +50,12 @@
     </div>
 </div>
 
+
+<!-- <script>
+    function showbio() {
+        let userbioinput = document.getElementsByID("bioupdate").innerHTML.value;
+        document.getElementsByClassName("userbio").innerHTML = userbioinput;
+    }
+</script> -->
 
 {% endblock content %}
