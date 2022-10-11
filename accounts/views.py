@@ -3,9 +3,9 @@ from django.contrib.auth import login, authenticate
 from accounts.forms import AccessRequestForm
 from django.http.response import HttpResponseRedirect
 from django.views.generic.base import View
+# Create your views here.
 from accounts.models import User
 from django.urls import reverse
-from django.contrib.admin.views.decorators import staff_member_required
 
 
 def register(request):
@@ -27,7 +27,7 @@ def submitted(request):
     return render(request, 'registration/request_sent.html')
 
 
-@staff_member_required
+# 用户列表
 def audit_list(request):
     users = User.objects.all()
     user_list = []
@@ -36,7 +36,7 @@ def audit_list(request):
     return render(request, 'registration/audit_account.html', {'users': users})
 
 
-@staff_member_required
+# 审核通过
 def audit_activate(request, pk):
     user = User.objects.get(id=int(pk))
     user.is_active = 1
@@ -48,7 +48,7 @@ def audit_activate(request, pk):
     return render(request, 'registration/audit_account.html', {'users': users})
 
 
-@staff_member_required
+# 审核不通过
 def audit_freeze(request, pk):
     user = User.objects.get(id=int(pk))
     user.is_active = 0
@@ -59,15 +59,4 @@ def audit_freeze(request, pk):
         user_list.append(user.to_dict())
     return render(request, 'registration/audit_account.html', {'users': users})
 
-@staff_member_required
-def confirm_deletion(request, pk):
-    user = User.objects.get(id=pk)
-    context =  {'user': user}
-    return render(request, "registration/confirm_deletion.html", context)
-
-@staff_member_required
-def delete_account(request, pk):
-    user = User.objects.get(id=pk)
-    user.delete()
-    return redirect('audit_list')
 
