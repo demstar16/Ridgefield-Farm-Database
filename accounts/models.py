@@ -16,21 +16,14 @@ class User(AbstractUser):
     role = models.ForeignKey(Role, on_delete=models.SET_NULL, null=True)
     bio = models.TextField(null=True, blank=True)
     is_active = models.BooleanField(default=False)
-    create_time = models.DateTimeField(auto_now_add=True,null=True, blank=True, verbose_name='Registration time')
 
-    USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
     def to_dict(self):
         return {
-            'email': self.email,
+            'id': self.id,
             'username': self.username,
-            'first_name': self.first_name,
-            'last_name': self.last_name,
+            'email': self.email,
             'role': self.role,
-            'create_time': self.create_time,
             'is_active': self.is_active
         }
-
-    class Meta:
-        ordering = ['create_time']
