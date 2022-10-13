@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from accounts.models import User
+from core.forms import BioForm
 from files.models import Paddock, File, Tag
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
@@ -19,6 +20,14 @@ def viewProfile(request, pk):
     user = User.objects.get(id=pk)
     context = {'user': user}
     return render(request, 'core/profile.html', context)
+
+@login_required(login_url='accounts/login')
+def viewProfile(request, pk):
+    form = BioForm(request.POST or None)
+    if request.method == "POST":
+        if form.is_valid():
+            return redirect('profile')
+    return render(request, 'core/profile.html', {"form": form})
 
 @login_required(login_url='accounts/login')
 def search(request):
@@ -68,4 +77,5 @@ def viewRecentlyDeleted(request):
 def errorPage(request):
     context = {}
     return render(request, 'core/error.html', context)
+
 
