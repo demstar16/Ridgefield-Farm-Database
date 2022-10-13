@@ -32,15 +32,15 @@
     
                     </div>
                     <div class='userinfo2'>
-                        <h2 class="user-heading">User Bio</h2>
+                        <h2 class="user-heading" id="user-heading">User Bio</h2>
                         <h4>Bio</h4>
-                        <p class="userbio">{{ user.bio }}</p>
+                        <p class="userbio"></p>
                         
                         <h4>Update User Bio</h4>
-                        <form onsubmit="showbio()">
-                            <textarea id="bioupdate" name="bioupdate" rows="4" cols="50">{{ user.bio }}</textarea>
+                        <form>
+                            <textarea id="bioupdate" name="bioupdate" rows="4" cols="50">...</textarea>
                             <br>
-                            <input type="submit" value="Submit">
+                            <input type="submit" value="Submit" onclick="showbio()">
                           </form>
                     </div>
                 </div>
@@ -50,12 +50,13 @@
     </div>
 </div>
 
-
-<!-- <script>
+<script>
     function showbio() {
-        let userbioinput = document.getElementsByID("bioupdate").innerHTML.value;
-        document.getElementsByClassName("userbio").innerHTML = userbioinput;
+        let userbioinput = document.getElementsByID("bioupdate").value;
+        alert('Hello')
+        document.getElementsByID("user-heading").innerHTML = userbioinput;
+        alert('Hello')
     }
-</script> -->
+</script>
 
 {% endblock content %}
