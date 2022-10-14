@@ -4,6 +4,7 @@ from core.forms import BioForm
 from files.models import Paddock, File, Tag
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
 @login_required(login_url='accounts/login')
@@ -21,13 +22,27 @@ def viewProfile(request, pk):
     context = {'user': user}
     return render(request, 'core/profile.html', context)
 
+# @login_required(login_url='accounts/login')
+# def editProfile(request):
+#     if request.method == "POST":
+#         form = BioForm(request.POST, instance=request.user)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('profile')
+#     else:
+#         form = BioForm(instance=request.user)
+#         args = {'form':form} 
+#         return render(request, 'core/profile.html', args)
+
 @login_required(login_url='accounts/login')
-def viewProfile(request, pk):
+def viewProfile(request,pk):
+    user = User.objects.get(id=pk)
     form = BioForm(request.POST or None)
     if request.method == "POST":
         if form.is_valid():
+            form.save()
             return redirect('profile')
-    return render(request, 'core/profile.html', {"form": form})
+    return render(request, 'core/profile.html', {'user': user, "form": form})
 
 @login_required(login_url='accounts/login')
 def search(request):
