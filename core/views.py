@@ -27,7 +27,7 @@ def viewProfile(request, pk):
 def viewProfile(request,pk):
     user = User.objects.get(id=pk)
     files = File.objects.filter(uploader=user, deleted=0)
-    context = {'files': files}
+    context = {'user': user, 'files': files}
     return render(request, 'core/profile.html', context)
 
 @login_required(login_url='accounts/login')

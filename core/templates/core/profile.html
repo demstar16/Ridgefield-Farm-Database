@@ -29,17 +29,15 @@
                 <div class="float">
                     <div class="userinfo1">
                         <h2 class="user-heading">Personal Information</h2>
+                        <h5>{{ user.first_name }} {{ user.last_name }}</h5>
+                        <p>{{ user.email }}</p>
                         <div>
                             <img src="{{user.picture.url}}" style="width:300px;height:300px;">
                         </div>
-                        <hr>
-                        <h5>{{ user.first_name }} {{ user.last_name }}</h5>
-                        <p>{{ user.email }}</p>
+                        <p>Last Login: {{ user.last_login }}</p>
                     </div>
                     <div class='userinfo2'>
                         <h2 class="user-heading" id="user-heading">Details</h2>
-                        <h4>Last Login</h4>
-                        <p>Last Login: {{ user.last_login }}</p>
                         <h4>Role</h4>
                         <p>{{ user.role.name }}</p>
                         <h4>Bio</h4>
@@ -52,6 +50,7 @@
                         <thead>
                             <tr class="bg-dark text-white">
                                     <th>Year</th>
+                                    <th>Filename</th>
                                     <th>Paddocks</th>
                                     <th>Tags</th>
                                     <th>Size</th>
@@ -62,6 +61,9 @@
                             {% for file in files %}
                                 <tr>
                                     <td>{{file.year}}</td>
+                                    <td><a href="{% url 'file' file.id %}" data-toggle="tooltip" title="View File Info" data-placement="bottom">
+                                        {{file.name}}</a>
+                                    </td>
                                     <td>
                                         {% for paddock in file.paddocks.all %}
                                         <a href="{% url 'paddock' paddock.id %}" data-toggle="tooltip" title="View all files for paddock" data-placement="bottom">
