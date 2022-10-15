@@ -26,7 +26,9 @@ def viewProfile(request, pk):
 @login_required(login_url='accounts/login')
 def viewProfile(request,pk):
     user = User.objects.get(id=pk)
-    return render(request, 'core/profile.html', {'user': user})
+    files = File.objects.filter(uploader=user, deleted=0)
+    context = {'files': files}
+    return render(request, 'core/profile.html', context)
 
 @login_required(login_url='accounts/login')
 def editProfile(request, pk):
@@ -48,28 +50,6 @@ def editProfile(request, pk):
         return render(request, 'core/edit_profile.html', context)
     else:
         return redirect('profile', request.user.id)
-
-@login_required(login_url='accounts/login')
-def update(request, pk):
-    if request.method == 'POST':
-        form = FileUpdateForm(request.POST, request.FILES)
-        if form.is_valid():
-            file = form.save(commit=False)
-            updated = File.objects.get(id=pk)
-            backup = PastFile(filedata=updated.filedata, user=request.user, fileref=updated)
-            backup.save()
-            updated.filedata = file.filedata
-            updated.name = file.filedata.name
-            backups = updated.past_versions
-            if backups.count() > 3:
-                backups.earliest('replaced').delete()
-            updated.save()
-            management.call_command('cleanup_unused_media', interactive=False)
-            return redirect('file', pk=updated.id)
-    else:
-        form = FileUpdateForm()
-    context = {'form': form}
-    return render(request, 'update.html', context)
 
 @login_required(login_url='accounts/login')
 def search(request):

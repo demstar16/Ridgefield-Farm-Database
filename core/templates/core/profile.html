@@ -39,21 +39,67 @@
                         <p>{{ user.role.name }}</p>
                         <h4>Last Login</h4>
                         <p>Last Login: {{ user.last_login }}</p>
-                        <h4>Recent Uploads</h4>
-                        
-                            {% for upload in uploads %}
-                            <a href="{% url 'file' upload.id %}" class="text-dark">{{upload.name}}</a>
-                            {% empty %}
-                            <p>No files uploaded recently.</p>
-                            {% endfor %}
-
-    
                     </div>
                     <div class='userinfo2'>
                         <h2 class="user-heading" id="user-heading">User Bio</h2>
                         <h4>Bio</h4>
                         <p>{{ user.bio }}</p>
                     </div>
+                </div>
+                <div class="userinfo1" style="text-align:center">
+                    <h2 class="user-heading">Uploads</h2>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="bg-dark text-white">
+                                    <th>Year</th>
+                                    <th>Paddocks</th>
+                                    <th>Tags</th>
+                                    <th>Size</th>
+                                    <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for file in files %}
+                                <tr>
+                                    <td>{{file.year}}</td>
+                                    <td>
+                                        {% for paddock in file.paddocks.all %}
+                                        <a href="{% url 'paddock' paddock.id %}" data-toggle="tooltip" title="View all files for paddock" data-placement="bottom">
+                                            <span class="badge badge-light">{{paddock.name}}</span>
+                                        </a>
+                                        {% endfor %}
+                                      </td>
+                                    <td>
+                                        {% for tag in file.tags.all %}
+                                          <a href="{% url 'tag' tag.id %}" data-toggle="tooltip" title="View all files with tag" data-placement="bottom">
+                                            <span class="badge badge-primary">{{tag.name}}</span>
+                                          </a>
+                                        {% endfor %}
+                                    </td>
+                                    <td>{{file.filedata.size}} Bytes</td>
+                                    <td>
+                                        <div class="btn-group">
+                                          <a href="{{ file.filedata.url }}" download data-toggle="tooltip" title="Download" data-placement="bottom">
+                                            <button type="button" class="btn btn-success">
+                                              <i class="material-icons" style="font-size:20px;">download</i>
+                                            </button>
+                                          </a>
+                                          <a href="{% url 'update' file.id %}" data-toggle="tooltip" title="Update" data-placement="bottom">
+                                            <button type="button" class="btn btn-primary">
+                                              <i class="material-icons" style="font-size:20px;">sync_alt</i>
+                                            </button>
+                                          </a>
+                                          <a href="{% url 'edit' file.id %}" data-toggle="tooltip" title="Edit Details" data-placement="bottom">
+                                            <button type="button" class="btn btn-info">
+                                              <i class="material-icons" style="font-size:20px;">assignment</i>
+                                            </button>
+                                          </a>
+                                        </div> 
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
