@@ -8,7 +8,13 @@
         <div class="card">
             <div class="card-header">
                 <div>
-                    <h1>Hi {{ user.username }}!</h1>
+                    <h1 style="text-align: center;">{{ user.username }}'s Profile 
+                        {% if request.user == user %}
+                            <a href="{% url 'edit_profile' user.id %}">
+                                <button type="button" class="btn btn-info">Edit Profile</button>
+                            </a>
+                        {% endif %}
+                    </h1>
                 </div>
             </div>
             <div class="card-body" style="overflow: auto;">
@@ -22,26 +28,20 @@
                 {% endif %}
                 <div class="float">
                     <div class="userinfo1">
-                        <h2 class="user-heading">
-                            Personal Details
-                            {% if request.user == user %}
-                            <a href="{% url 'edit_profile' user.id %}">
-                                <button type="button" class="btn btn-info btn-sm">Edit Profile</button>
-                            </a>
-                            {% endif %}
-                        </h2>
+                        <h2 class="user-heading">Personal Information</h2>
                         <div>
                             <img src="{{user.picture.url}}" style="width:300px;height:300px;">
                         </div>
-                        <h4>Name</h4>
-                        <p>{{ user.first_name }} {{ user.last_name }}</p>
-                        <h4>Role</h4>
-                        <p>{{ user.role.name }}</p>
-                        <h4>Last Login</h4>
-                        <p>Last Login: {{ user.last_login }}</p>
+                        <hr>
+                        <h5>{{ user.first_name }} {{ user.last_name }}</h5>
+                        <p>{{ user.email }}</p>
                     </div>
                     <div class='userinfo2'>
-                        <h2 class="user-heading" id="user-heading">User Bio</h2>
+                        <h2 class="user-heading" id="user-heading">Details</h2>
+                        <h4>Last Login</h4>
+                        <p>Last Login: {{ user.last_login }}</p>
+                        <h4>Role</h4>
+                        <p>{{ user.role.name }}</p>
                         <h4>Bio</h4>
                         <p>{{ user.bio }}</p>
                     </div>
