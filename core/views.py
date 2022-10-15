@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from accounts.models import User
-from core.forms import BioForm
+from core.forms import ProfileEditForm
 from files.models import Paddock, File, Tag
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
@@ -23,40 +23,29 @@ def viewProfile(request, pk):
     context = {'user': user}
     return render(request, 'core/profile.html', context)
 
-# @login_required(login_url='accounts/login')
-# def editProfile(request):
-#     if request.method == "POST":
-#         form = BioForm(request.POST, instance=request.user)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('profile')
-#     else:
-#         form = BioForm(instance=request.user)
-#         args = {'form':form} 
-#         return render(request, 'core/profile.html', args)
-
 @login_required(login_url='accounts/login')
 def viewProfile(request,pk):
     user = User.objects.get(id=pk)
-    form = BioForm(request.POST or None)
-    if request.method == "POST":
-        if form.is_valid():
-            user.bio = form.cleaned_data.get('bio')
-            user.save()
-            return redirect('profile', pk=pk)
-    return render(request, 'core/profile.html', {'user': user, "form": form})
+    return render(request, 'core/profile.html', {'user': user})
 
-# @login_required(login_url='accounts/login')
-# def editProfile(request):
-#     if request.method == "POST":
-#         form = UserChangeForm(request.POST, instance=request.user)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('profile')
-#     else:
-#         form = UserChangeForm(instance=request.user)
-#         args = {'form':form} 
-#         return render(request, 'core/profile.html', args)
+@login_required(login_url='accounts/login')
+def editProfile(request, pk):
+    user = User.objects.get(id=pk)
+    if request.user.id == user or request.user.is_staff:
+        if request.method == 'POST':
+            form = ProfileEditForm(request.POST)
+            if form.is_valid():
+                user.bio = form.data['bio']
+                user.save()
+                return redirect('profile', pk)
+        else:
+            form = ProfileEditForm(initial = {
+                'bio': user.bio, 
+            })
+        context = {'form': form}
+        return render(request, 'core/edit_profile.html', context)
+    else:
+        return redirect('profile', request.user.id)
 
 @login_required(login_url='accounts/login')
 def search(request):

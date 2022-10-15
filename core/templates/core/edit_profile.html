@@ -1,0 +1,24 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="card form-container shadowed">
+    <div class="form-content">
+      <h3>Edit Profile</h3>
+      <hr>
+      <div>
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary">Save</button>
+          <input type="hidden" name="next" value="{% url 'profile' user.id %}">
+        </form>
+      </div>
+      <hr>
+      <div>
+        <p><a href="{{request.META.HTTP_REFERER}}">Go Back</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

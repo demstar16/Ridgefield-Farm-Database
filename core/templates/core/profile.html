@@ -12,9 +12,24 @@
                 </div>
             </div>
             <div class="card-body" style="overflow: auto;">
+                {% if request.user.is_staff == True and request.user != user %}
+                        <div class="alert alert-info" style="text-align: center;">
+                            <h5>[Admin Options]</h5>
+                            <a href="{% url 'edit_profile' user.id %}">
+                                <button type="button" class="btn btn-danger btn-sm">Edit Profile</button>
+                            </a>
+                        </div>
+                {% endif %}
                 <div class="float">
                     <div class="userinfo1">
-                        <h2 class="user-heading">Personal Details</h2>
+                        <h2 class="user-heading">
+                            Personal Details
+                            {% if request.user == user %}
+                            <a href="{% url 'edit_profile' user.id %}">
+                                <button type="button" class="btn btn-info btn-sm">Edit Profile</button>
+                            </a>
+                            {% endif %}
+                        </h2>
                         <h4>Name</h4>
                         <p>{{ user.first_name }} {{ user.last_name }}</p>
                         <h4>Role</h4>
@@ -34,14 +49,7 @@
                     <div class='userinfo2'>
                         <h2 class="user-heading" id="user-heading">User Bio</h2>
                         <h4>Bio</h4>
-
-                        <h4>Update User Bio</h4>
-                        <div>
-                            <form method="post">
-                                {% csrf_token %}
-                                {{ form.as_p }}
-                            <button class="button" type="submit">Update</button>
-                        </div>
+                        <p>{{ user.bio }}</p>
                     </div>
                 </div>
             </div>
@@ -49,14 +57,4 @@
       </div>
     </div>
 </div>
-
-<!-- <script>
-    function showbio() {
-        alert('Hello')
-        let userbioinput = document.getElementsByID("bioupdate").value;
-        alert('Hello')
-        document.getElementsByID("user-heading").innerHTML = userbioinput;
-    }
-</script> -->
-
 {% endblock content %}
