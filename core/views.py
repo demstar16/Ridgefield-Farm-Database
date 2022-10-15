@@ -41,7 +41,7 @@ def viewProfile(request,pk):
     form = BioForm(request.POST or None)
     if request.method == "POST":
         if form.is_valid():
-            user.bio = form.cleaned_data.get('bio')
+            user.bio = request.POST['bio']
             user.save()
             return redirect('profile', pk=pk)
     return render(request, 'core/profile.html', {'user': user, "form": form})
