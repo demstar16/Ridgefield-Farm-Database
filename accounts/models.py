@@ -17,6 +17,7 @@ class User(AbstractUser):
     bio = models.TextField(null=True, blank=True)
     is_active = models.BooleanField(default=False)
     create_time = models.DateTimeField(auto_now_add=True,null=True, blank=True, verbose_name='Registration time')
+    picture = models.ImageField(null=True, upload_to='images/', default="images/default_pic.png")
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

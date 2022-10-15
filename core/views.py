@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
 from accounts.models import User
+from core.forms import ProfileEditForm
 from files.models import Paddock, File, Tag
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.contrib.auth.forms import UserChangeForm
 
 # Create your views here.
 @login_required(login_url='accounts/login')
@@ -19,6 +22,34 @@ def viewProfile(request, pk):
     user = User.objects.get(id=pk)
     context = {'user': user}
     return render(request, 'core/profile.html', context)
+
+@login_required(login_url='accounts/login')
+def viewProfile(request,pk):
+    user = User.objects.get(id=pk)
+    files = File.objects.filter(uploader=user, deleted=0)
+    context = {'files': files}
+    return render(request, 'core/profile.html', context)
+
+@login_required(login_url='accounts/login')
+def editProfile(request, pk):
+    user = User.objects.get(id=pk)
+    if request.user.id == user or request.user.is_staff:
+        if request.method == 'POST':
+            form = ProfileEditForm(request.POST, request.FILES)
+            if form.is_valid():
+                update = form.save(commit=False)
+                user.picture = update.picture
+                user.bio = update.bio
+                user.save()
+                return redirect('profile', pk)
+        else:
+            form = ProfileEditForm(initial = {
+                'bio': user.bio, 
+            })
+        context = {'form': form}
+        return render(request, 'core/edit_profile.html', context)
+    else:
+        return redirect('profile', request.user.id)
 
 @login_required(login_url='accounts/login')
 def search(request):
@@ -68,4 +99,5 @@ def viewRecentlyDeleted(request):
 def errorPage(request):
     context = {}
     return render(request, 'core/error.html', context)
+
 

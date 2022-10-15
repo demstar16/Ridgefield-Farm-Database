@@ -8,39 +8,102 @@
         <div class="card">
             <div class="card-header">
                 <div>
-                    <h1>Hi {{ user.username }}!</h1>
+                    <h1 style="text-align: center;">{{ user.username }}'s Profile 
+                        {% if request.user == user %}
+                            <a href="{% url 'edit_profile' user.id %}">
+                                <button type="button" class="btn btn-info">Edit Profile</button>
+                            </a>
+                        {% endif %}
+                    </h1>
                 </div>
             </div>
             <div class="card-body" style="overflow: auto;">
+                {% if request.user.is_staff == True and request.user != user %}
+                        <div class="alert alert-info" style="text-align: center;">
+                            <h5>[Admin Options]</h5>
+                            <a href="{% url 'edit_profile' user.id %}">
+                                <button type="button" class="btn btn-danger btn-sm">Edit Profile</button>
+                            </a>
+                        </div>
+                {% endif %}
                 <div class="float">
                     <div class="userinfo1">
-                        <h2 class="user-heading">Personal Details</h2>
-                        <h4>Name</h4>
-                        <p>{{ user.first_name }} {{ user.last_name }}</p>
+                        <h2 class="user-heading">Personal Information</h2>
+                        <div>
+                            <img src="{{user.picture.url}}" style="width:300px;height:300px;">
+                        </div>
+                        <hr>
+                        <h5>{{ user.first_name }} {{ user.last_name }}</h5>
+                        <p>{{ user.email }}</p>
+                    </div>
+                    <div class='userinfo2'>
+                        <h2 class="user-heading" id="user-heading">Details</h2>
+                        <h4>Last Login</h4>
+                        <p>Last Login: {{ user.last_login }}</p>
                         <h4>Role</h4>
                         <p>{{ user.role.name }}</p>
                         <h4>Bio</h4>
                         <p>{{ user.bio }}</p>
                     </div>
-                    <div class='userinfo2'>
-                        <h2 class="user-heading">User Activity</h2>
-                        <h4>Last Login</h4>
-                        <p>Last Login: {{ user.last_login }}</p>
-                        <h4>Recent Uploads</h4>
-                        
-                            {% for upload in uploads %}
-                                <ul>
-                                    <li><a href="{% url 'file' upload.id %}" class="text-dark">{{upload.name}}</a></li>
-                                </ul>
+                </div>
+                <div class="userinfo1" style="text-align:center">
+                    <h2 class="user-heading">Uploads</h2>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="bg-dark text-white">
+                                    <th>Year</th>
+                                    <th>Paddocks</th>
+                                    <th>Tags</th>
+                                    <th>Size</th>
+                                    <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for file in files %}
+                                <tr>
+                                    <td>{{file.year}}</td>
+                                    <td>
+                                        {% for paddock in file.paddocks.all %}
+                                        <a href="{% url 'paddock' paddock.id %}" data-toggle="tooltip" title="View all files for paddock" data-placement="bottom">
+                                            <span class="badge badge-light">{{paddock.name}}</span>
+                                        </a>
+                                        {% endfor %}
+                                      </td>
+                                    <td>
+                                        {% for tag in file.tags.all %}
+                                          <a href="{% url 'tag' tag.id %}" data-toggle="tooltip" title="View all files with tag" data-placement="bottom">
+                                            <span class="badge badge-primary">{{tag.name}}</span>
+                                          </a>
+                                        {% endfor %}
+                                    </td>
+                                    <td>{{file.filedata.size}} Bytes</td>
+                                    <td>
+                                        <div class="btn-group">
+                                          <a href="{{ file.filedata.url }}" download data-toggle="tooltip" title="Download" data-placement="bottom">
+                                            <button type="button" class="btn btn-success">
+                                              <i class="material-icons" style="font-size:20px;">download</i>
+                                            </button>
+                                          </a>
+                                          <a href="{% url 'update' file.id %}" data-toggle="tooltip" title="Update" data-placement="bottom">
+                                            <button type="button" class="btn btn-primary">
+                                              <i class="material-icons" style="font-size:20px;">sync_alt</i>
+                                            </button>
+                                          </a>
+                                          <a href="{% url 'edit' file.id %}" data-toggle="tooltip" title="Edit Details" data-placement="bottom">
+                                            <button type="button" class="btn btn-info">
+                                              <i class="material-icons" style="font-size:20px;">assignment</i>
+                                            </button>
+                                          </a>
+                                        </div> 
+                                    </td>
+                                </tr>
                             {% endfor %}
-            
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
       </div>
     </div>
 </div>
-
-
 {% endblock content %}

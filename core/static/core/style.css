@@ -73,60 +73,114 @@ body {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-@media screen and (max-width: 2000px) {
+@media screen and (max-width: 1000px) {
     #map-display {
         background-image: url("map.png");
         background-size: cover;
         padding-left: 0%;
-        margin-left: 0%;
         height: 88.5vh;
         padding-top: 20px;}
 
     #index-tag-column, #index-paddock-column {
     overflow-y: scroll; 
     text-align: left;
-    height: 33vh;}
+    height: 29.7vh;}
 
 #index-recent-column {
     text-align: left;
     overflow-x: scroll;
     padding: 0px;
-    height: 33vh;}
+    height: 37vh;}
 
 #index-uploaded-column {
     text-align: left;
     overflow-x: scroll;
     overflow-y: scroll;
     padding: 0px;
-    height: 40vh;}
+    height: 29.5vh;}
 }
 
-@media only screen and (min-width: 2000px) and (max-width: 3000px) {
+@media screen and (max-width: 1500px) {
+    #map-display {
+        background-image: url("map.png");
+        background-size: cover;
+        padding-left: 0%;
+        height: 88.5vh;
+        padding-top: 20px;}
+
+    #index-tag-column, #index-paddock-column {
+    overflow-y: scroll; 
+    text-align: left;
+    height: 29.7vh;}
+
+#index-recent-column {
+    text-align: left;
+    overflow-x: scroll;
+    padding: 0px;
+    height: 37vh;}
+
+#index-uploaded-column {
+    text-align: left;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    padding: 0px;
+    height: 29.5vh;}
+}
+
+@media only screen and (min-width: 1500px) and (max-width: 1900px) {
     #map-display {
     background-image: url("map.png");
     background-size: cover;
     padding-left: 0%;
     margin-left: 0%;
-    height: 91vh;
+    height: 89vh;
     padding-top: 20px;}
 
     #index-tag-column, #index-paddock-column {
     overflow-y: scroll; 
     text-align: left;
-    height: 36vh;}
+    height: 30vh;}
 
 #index-recent-column {
     text-align: left;
     overflow-x: scroll;
     padding: 0px;
-    height: 38.5vh;}
+    height: 35vh;}
 
 #index-uploaded-column {
     text-align: left;
     overflow-x: scroll;
     overflow-y: scroll;
     padding: 0px;
-    height: 39.5vh;}
+    height: 31.5vh;}
+}
+
+@media only screen and (min-width: 1900px) and (max-width: 3000px) {
+    #map-display {
+    background-image: url("map.png");
+    background-size: cover;
+    padding-left: 0%;
+    margin-left: 0%;
+    height: 88vh;
+    padding-top: 20px;}
+
+    #index-tag-column, #index-paddock-column {
+    overflow-y: scroll; 
+    text-align: left;
+    height: 35vh;}
+
+#index-recent-column {
+    text-align: left;
+    overflow-x: scroll;
+    padding: 0px;
+    height: 45vh;}
+
+#index-uploaded-column {
+    text-align: left;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    padding: 0px;
+    height: 32vh;}
 }
 
 @media only screen and (min-width: 3000px) and (max-width: 4000px) {
@@ -185,7 +239,7 @@ body {
     height: 42vh;}
 }
 
-/* @media only screen and (min-width: 5000px) and (max-width: 50000px) {
+@media only screen and (min-width: 5000px) and (max-width: 50000px) {
     #map-display {
         background-image: url("map.png");
         background-size: cover;
@@ -211,7 +265,7 @@ body {
         overflow-y: scroll;
         padding: 0px;
         height: 42vh;}
-    } */
+    }
 
 .shadowed {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6)
@@ -266,10 +320,10 @@ td, th, tr {text-align: center;}
 
 .float {display: flex; text-align: center;}
 
-.userinfo1 {background: rgb(186, 244, 186);flex-basis: 50%; margin: 10px;}
+.userinfo1 {background: rgb(223, 223, 223);flex-basis: 50%; margin: 10px;}
 
-.userinfo2 {background: rgb(186, 244, 186); flex-basis: 50%; margin: 10px;}
+.userinfo2 {background: rgb(223, 223, 223); flex-basis: 50%; margin: 10px;}
 
-.user-heading {background-color: rgb(186, 244, 186); border-bottom: solid black; border-top: solid black}
+.user-heading {background-color: rgb(0, 0, 0); border-bottom: solid black; border-top: solid black; color: white}
 
 .light-grey {background-color: rgb(230, 227, 227);}

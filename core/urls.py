@@ -11,4 +11,6 @@ urlpatterns = [
     path('year/<int:pk>/', views.byYear, name="year"),
     path('recently_deleted/', views.viewRecentlyDeleted, name="recently_deleted"),
     path('error/', views.errorPage, name="error"),
+    path('profile/<int:pk>/edit', views.editProfile, name="edit_profile"),
+
 ]
