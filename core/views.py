@@ -5,6 +5,7 @@ from files.models import Paddock, File, Tag
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.forms import UserChangeForm
 
 # Create your views here.
 @login_required(login_url='accounts/login')
@@ -40,9 +41,22 @@ def viewProfile(request,pk):
     form = BioForm(request.POST or None)
     if request.method == "POST":
         if form.is_valid():
-            form.save()
-            return redirect('profile')
+            user.bio = form.cleaned_data.get('bio')
+            user.save()
+            return redirect('profile', pk=pk)
     return render(request, 'core/profile.html', {'user': user, "form": form})
+
+# @login_required(login_url='accounts/login')
+# def editProfile(request):
+#     if request.method == "POST":
+#         form = UserChangeForm(request.POST, instance=request.user)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('profile')
+#     else:
+#         form = UserChangeForm(instance=request.user)
+#         args = {'form':form} 
+#         return render(request, 'core/profile.html', args)
 
 @login_required(login_url='accounts/login')
 def search(request):
