@@ -28,20 +28,30 @@
                 {% endif %}
                 <div class="float">
                     <div class="userinfo1">
-                        <h2 class="user-heading">Personal Information</h2>
+                        <h2 class="user-heading">Account Information</h2>
                         <h5>{{ user.first_name }} {{ user.last_name }}</h5>
+                        <h4>Email</h4>
                         <p>{{ user.email }}</p>
+                        <br>
+                        <h4>Profile Picture</h4>
                         <div>
                             <img src="{{user.picture.url}}" style="width:300px;height:300px;">
                         </div>
-                        <p>Last Login: {{ user.last_login }}</p>
+                        <br>
                     </div>
                     <div class='userinfo2'>
-                        <h2 class="user-heading" id="user-heading">Details</h2>
+                        <h2 class="user-heading" id="user-heading">User Details</h2>
                         <h4>Role</h4>
                         <p>{{ user.role.name }}</p>
+                        <br>
                         <h4>Bio</h4>
                         <p>{{ user.bio }}</p>
+                        <br>
+                        <h4>Account Creation Date</h4>
+                        <p>Account created: {{ user.create_time }}</p>
+                        <br>
+                        <h4>Login Activity</h4>
+                        <p>Last Login: {{ user.last_login }}</p>
                     </div>
                 </div>
                 <div class="userinfo1" style="text-align:center">
@@ -49,11 +59,11 @@
                     <table class="table table-hover">
                         <thead>
                             <tr class="bg-dark text-white">
-                                    <th>Year</th>
-                                    <th>Filename</th>
-                                    <th>Paddocks</th>
-                                    <th>Tags</th>
-                                    <th>Size</th>
+                                    <th class="sort-profile">Year</th>
+                                    <th class="sort-profile">Filename</th>
+                                    <th class="sort-profile">Paddocks</th>
+                                    <th class="sort-profile">Tags</th>
+                                    <th class="sort-profile">Size</th>
                                     <th>Action</th>
                             </tr>
                         </thead>

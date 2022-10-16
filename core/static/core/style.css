@@ -314,6 +314,8 @@ body {
 
 .sort:hover {cursor: pointer; background-color: rgb(201, 125, 136);}
 
+.sort-profile:hover {cursor: pointer; background-color: rgb(135, 135, 135);}
+
 td, th, tr {text-align: center;}
 
 .dataTables_wrapper .dataTables_paginate .paginate_button {padding: 5px; text-decoration: none; cursor: pointer; text-align: left;}
