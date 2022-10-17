@@ -6,7 +6,7 @@ from django.views.generic.base import View
 from accounts.models import User
 from django.urls import reverse
 from django.contrib.admin.views.decorators import staff_member_required
-
+from django.core.mail import send_mail
 
 def register(request):
     if request.method == 'POST':
@@ -16,7 +16,17 @@ def register(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
+            email = form.cleaned_data.get('email')
+            name = form.cleaned_data.get('first_name') + " " + form.cleaned_data.get('last_name')
+            role = form.cleaned_data.get('role')
             # login(request, user)
+            send_mail(
+                '[Ridgefield Database] New access request from: {}'.format(email),
+                'REQUEST DETAILS\n\nName:\n\t{}\n\nEmail:\n\t{}\n\nRole:\n\t{}'.format(name, email, role),
+                'troyli1228@gmail.com',
+                ['20921239@student.uwa.edu.au'],
+                fail_silently=False,
+            )
             return redirect('submitted')
     else:
         form = AccessRequestForm()
