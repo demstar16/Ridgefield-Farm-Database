@@ -27,7 +27,7 @@ def viewProfile(request,pk):
 @login_required(login_url='accounts/login')
 def editProfile(request, pk):
     user = User.objects.get(id=pk)
-    if request.user.id == user or request.user.is_staff:
+    if request.user == user or request.user.is_staff:
         if request.method == 'POST':
             form = ProfileEditForm(request.POST, request.FILES)
             if form.is_valid():
