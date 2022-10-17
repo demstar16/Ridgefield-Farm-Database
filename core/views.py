@@ -18,12 +18,6 @@ def index(request):
     return render(request, 'core/index.html', context)
 
 @login_required(login_url='accounts/login')
-def viewProfile(request, pk):
-    user = User.objects.get(id=pk)
-    context = {'user': user}
-    return render(request, 'core/profile.html', context)
-
-@login_required(login_url='accounts/login')
 def viewProfile(request,pk):
     user = User.objects.get(id=pk)
     files = File.objects.filter(uploader=user, deleted=0)

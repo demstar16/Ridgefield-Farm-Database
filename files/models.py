@@ -32,8 +32,7 @@ class File(models.Model):
     tags = models.ManyToManyField(Tag, related_name='tags', blank=True)
     filedata = models.FileField(upload_to='files/')
     paddocks = models.ManyToManyField(Paddock, related_name='paddocks', blank=True)
-    year = models.PositiveIntegerField(
-        default= current_year(), validators=[MinValueValidator(2007), MaxValueValidator(current_year())])
+    year = models.PositiveIntegerField(default= current_year())
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     deleted = models.IntegerField(default=0)
