@@ -23,8 +23,8 @@ def register(request):
             send_mail(
                 '[Ridgefield Database] New access request from: {}'.format(email),
                 'REQUEST DETAILS\n\nName:\n\t{}\n\nEmail:\n\t{}\n\nRole:\n\t{}'.format(name, email, role),
-                'troyli1228@gmail.com',
-                ['20921239@student.uwa.edu.au'],
+                'troyli1228@gmail.com',     # Sender email, should be the same as the one in settings.py
+                ['20921239@student.uwa.edu.au'],       # Receiving email for the notifications
                 fail_silently=False,
             )
             return redirect('submitted')
