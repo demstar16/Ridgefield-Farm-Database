@@ -15,5 +15,7 @@ python manage.py createsuperuser
 Can refer to this artile from Geeks4Geeks for more:
 https://www.geeksforgeeks.org/how-to-create-superuser-in-django/
 
+### You will also need to create a database file 'db.sqlite3', as it was removed for safety reasons
+
 ## Deployment
 The site is currently deployed using Heroku, hence the Procfile.
