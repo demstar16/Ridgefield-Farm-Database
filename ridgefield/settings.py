@@ -21,6 +21,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 #SECRET_KEY = 'django-insecure-#r@o%yo-#92(0*j%9vn*9l7itkd50l7wadkc=55p$wd46ljl5-'
+
+#won't work you need your own security key, my specific one has been removed for security purposes
+#simply paste your secuirty code into a 'secret_key.txt' file... good security purposes
 with open('secret_key.txt', 'r') as f:
     SECRET_KEY = f.readline().strip()
 
